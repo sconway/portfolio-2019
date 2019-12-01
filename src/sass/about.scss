@@ -1,0 +1,118 @@
+.about {
+    @media (min-width: 768px) {
+        min-height: 600px;
+    }
+}
+
+.about__experience-graph {
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+
+.about {
+    position: relative;
+    z-index: 1;
+    
+    &__technology {
+        
+    }
+
+    &__percentage {
+        color: #000;
+        font-size: 1.1rem;
+        position: absolute;
+        left: calc(50% - 145px);
+        opacity: 0;
+        
+        @media (min-width: 768px) {
+            left: calc(50% - 280px);
+            font-size: 1.5rem;
+        }
+
+        &__value {
+            display: none;
+            position: absolute;
+            left: 155px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            @media (min-width: 768px) {
+                display: block;
+            }
+        }
+    }
+
+    &__html {
+        top: 37px;
+
+        @media (min-width: 768px) {
+            top: 46px;
+        }
+    }
+
+    &__css {
+        top: 82px;
+        
+        @media (min-width: 768px) {
+            top: 105px;
+        }
+        
+    }
+
+    &__js {
+        top: 122px;
+
+        @media (min-width: 768px) {
+            top: 160px;
+        }
+    }
+
+    &__react {
+        top: 164px;
+
+        @media (min-width: 768px) {
+            top: 218px;
+        }
+    }
+
+    &__rn {
+        top: 206px;
+
+        @media (min-width: 768px) {
+            top: 275px;
+        }   
+    }
+
+    &__node {
+        top: 248px;
+
+        @media (min-width: 768px) {
+            top: 332px;
+        }
+    }
+
+    &__next {
+        top: 288px;
+
+        @media (min-width: 768px) {
+            top: 388px;
+        }
+    }
+
+    &__graphql {
+        top: 330px;
+
+        @media (min-width: 768px) {
+            top: 440px;
+        }
+    }
+
+    &__aws {
+        top: 372px;
+
+        @media (min-width: 768px) {
+            top: 500px;
+        }
+    }
+}

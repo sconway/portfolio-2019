@@ -1,0 +1,41 @@
+@import "./variables.scss";
+
+.section {
+    height: 100vh;
+    overflow: hidden;
+
+    &:nth-of-type(1) {
+        background-color: $primary;
+    }
+
+    &:nth-of-type(2) {
+        background-color: $accent;
+    }
+
+    &:nth-of-type(3) {
+        background-color: $tertiary;
+    }
+
+    &:nth-of-type(4) {
+        background-color: $highlight;
+    }
+
+    &.intro {
+        height: calc(100vh + 1000px);
+
+        canvas {
+            &[style] {
+                opacity: 0.4;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: calc(100vh + 1000px) !important;
+                width: 100% !important;
+            }
+        }
+    }
+
+    &.about {
+        padding: 15px;
+    }
+}
