@@ -14,6 +14,7 @@
         percentage7,
         percentage8,
         percentage9,
+        group = new THREE.Group(),
         shape2,
         label2,
         shape3,
@@ -30,8 +31,11 @@
         label8,
         shape9,
         label9,
+        isOnscreen = false,
         deviceHeight = window.innerHeight,
         deviceWidth = window.innerWidth,
+        isPortrait = deviceHeight > deviceWidth,
+        isMobile = deviceWidth < 768,
         controller = new ScrollMagic.Controller(),
         renderer;
 
@@ -59,7 +63,7 @@
             1,
             20000
         );
-        camera.position.set(200, 100, 1000);
+        camera.position.set(200, 100, isPortrait && !isMobile ? 1500 : 1000);
     }
 
     function initScene() {
@@ -97,8 +101,8 @@
     function createLabel(label) {
         var labelGeometry = new THREE.TextBufferGeometry(label, {
             font: font,
-            size: deviceWidth < 768 ? 8 : 10,
-            height: deviceWidth < 768 ? 10 : 10
+            size: isMobile ? 8 : 10,
+            height: isMobile ? 10 : 10
         });
         // labelGeometry.computeBoundingSphere();
         var textMaterial = new THREE.MeshPhongMaterial({
@@ -146,73 +150,73 @@
     }
 
     function initGraphTween() {
+        // HTML
         addTween(createGrowTween(shape.scale), 0, 100);
-        addTween(createTranslateTween(shape.position, deviceWidth < 768 ? 19.5 : 59), 0, 100);
-        addTween(createTranslateTween(percentage1.position, deviceWidth < 768 ? 75 : 155), 0, 100);
-        // addTween(createCounterTween(80, "htmlPercentage"), 0, 100);
+        addTween(createTranslateTween(shape.position, isMobile ? 19.5 : 19), 0, 100);
+        addTween(createTranslateTween(percentage1.position, isMobile ? 75 : 115), 0, 100);
         addTween(createFadeTween(shape.material), 0, 5);
         addTween(createFadeTween(label1.material), -10, 50);
         addTween(createFadeTween(percentage1.material), -10, 50);
-        addTween(createGrowTween(shape2.scale), 60, 100);
-        addTween(createTranslateTween(percentage2.position, deviceWidth < 768 ? 75 : 163), 60, 100);
-        addTween(createTranslateTween(shape2.position, deviceWidth < 768 ? 22 : 64), 60, 100);
-        // addTween(createCounterTween(90, "cssPercentage"), 60, 100);
-        addTween(createFadeTween(shape2.material), 60, 5);
+        // SASS
+        addTween(createGrowTween(shape2.scale), 20, 100);
+        addTween(createTranslateTween(shape2.position, isMobile ? 22 : 24), 20, 100);
+        addTween(createTranslateTween(percentage2.position, isMobile ? 75 : 123), 20, 100);
+        addTween(createFadeTween(shape2.material), 20, 5);
         addTween(createFadeTween(label2.material), 40, 50);
         addTween(createFadeTween(percentage2.material), 40, 50);
+        // JS
         addTween(createGrowTween(shape3.scale), 120, 100);
-        addTween(createTranslateTween(shape3.position, deviceWidth < 768 ? 22 : 64), 120, 100);
-        addTween(createTranslateTween(percentage3.position, deviceWidth < 768 ? 75 : 163), 120, 100);
-        // addTween(createCounterTween(90, "jsPercentage"), 120, 100);
+        addTween(createTranslateTween(shape3.position, isMobile ? 22 : 24), 120, 100);
+        addTween(createTranslateTween(percentage3.position, isMobile ? 75 : 123), 120, 100);
         addTween(createFadeTween(shape3.material), 120, 5);
         addTween(createFadeTween(label3.material), 100, 50);
         addTween(createFadeTween(percentage3.material), 100, 50);
+        // React
         addTween(createGrowTween(shape4.scale), 160, 100);
-        addTween(createTranslateTween(shape4.position, deviceWidth < 768 ? 24.5 : 69), 160, 100);
-        addTween(createTranslateTween(percentage4.position, deviceWidth < 768 ? 78 : 171), 160, 100);
-        // addTween(createCounterTween(95, "reactPercentage"), 160, 100);
+        addTween(createTranslateTween(shape4.position, isMobile ? 24.5 : 29), 160, 100);
+        addTween(createTranslateTween(percentage4.position, isMobile ? 78 : 131), 160, 100);
         addTween(createFadeTween(shape4.material), 160, 5);
         addTween(createFadeTween(label4.material), 140, 50);
         addTween(createFadeTween(percentage4.material), 140, 50);
-        addTween(createGrowTween(shape5.scale), 195, 100);
-        addTween(createTranslateTween(shape5.position, deviceWidth < 768 ? 22 : 64), 195, 100);
-        addTween(createTranslateTween(percentage5.position, deviceWidth < 768 ? 75 : 163), 195, 100);
-        // addTween(createCounterTween(90, "rnPercentage"), 195, 100);
-        addTween(createFadeTween(shape5.material), 195, 5);
-        addTween(createFadeTween(label5.material), 175, 50);
-        addTween(createFadeTween(percentage5.material), 175, 50);
+        // React Native
+        addTween(createGrowTween(shape5.scale), 175, 100);
+        addTween(createTranslateTween(shape5.position, isMobile ? 22 : 24), 175, 100);
+        addTween(createTranslateTween(percentage5.position, isMobile ? 75 : 123), 175, 100);
+        addTween(createFadeTween(shape5.material), 175, 5);
+        addTween(createFadeTween(label5.material), 155, 50);
+        addTween(createFadeTween(percentage5.material), 155, 50);
+        // Node
         addTween(createGrowTween(shape6.scale), 220, 100);
-        addTween(createTranslateTween(shape6.position, deviceWidth < 768 ? 7 : 34), 220, 100);
-        addTween(createTranslateTween(percentage6.position, deviceWidth < 768 ? 45 : 103), 220, 100);
-        // addTween(createCounterTween(60, "nodePercentage"), 220, 100);
+        addTween(createTranslateTween(shape6.position, isMobile ? 7 : -6), 220, 100);
+        addTween(createTranslateTween(percentage6.position, isMobile ? 45 : 63), 220, 100);
         addTween(createFadeTween(shape6.material), 220, 5);
         addTween(createFadeTween(label6.material), 200, 50);
         addTween(createFadeTween(percentage6.material), 200, 50);
+        // Next
         addTween(createGrowTween(shape7.scale), 235, 100);
-        addTween(createTranslateTween(shape7.position, deviceWidth < 768 ? 12 : 44), 235, 100);
-        addTween(createTranslateTween(percentage7.position, deviceWidth < 768 ? 55 : 122), 235, 100);
-        // addTween(createCounterTween(70, "nextPercentage"), 235, 100);
+        addTween(createTranslateTween(shape7.position, isMobile ? 12 : 4), 235, 100);
+        addTween(createTranslateTween(percentage7.position, isMobile ? 55 : 82), 235, 100);
         addTween(createFadeTween(shape7.material), 235, 5);
         addTween(createFadeTween(label7.material), 215, 50);
         addTween(createFadeTween(percentage7.material), 215, 50);
+        // GraphQL
         addTween(createGrowTween(shape8.scale), 250, 100);
-        addTween(createTranslateTween(shape8.position, deviceWidth < 768 ? 7 : 34), 250, 100);
-        addTween(createTranslateTween(percentage8.position, deviceWidth < 768 ? 48 : 103), 250, 100);
-        // addTween(createCounterTween(60, "graphqlPercentage"), 250, 100);
+        addTween(createTranslateTween(shape8.position, isMobile ? 7 : -6), 250, 100);
+        addTween(createTranslateTween(percentage8.position, isMobile ? 48 : 83), 250, 100);
         addTween(createFadeTween(shape8.material), 250, 5);
         addTween(createFadeTween(label8.material), 230, 50);
         addTween(createFadeTween(percentage8.material), 230, 50);
+        // AWS
         addTween(createGrowTween(shape9.scale), 270, 100);
-        addTween(createTranslateTween(shape9.position, deviceWidth < 768 ? 2 : 24), 270, 100);
-        addTween(createTranslateTween(percentage9.position, deviceWidth < 768 ? 40 : 85), 270, 100);
-        // addTween(createCounterTween(50, "awsPercentage"), 270, 100);
+        addTween(createTranslateTween(shape9.position, isMobile ? 2 : -16), 270, 100);
+        addTween(createTranslateTween(percentage9.position, isMobile ? 40 : 45), 270, 100);
         addTween(createFadeTween(shape9.material), 270, 5);
         addTween(createFadeTween(percentage9.material), 270, 5);
         addTween(createFadeTween(label9.material), 250, 50);
     }
 
     function createBoxGeometry(length) {
-        return deviceWidth < 768
+        return isMobile
             ? new THREE.BoxGeometry(10, 10, length)
             : new THREE.BoxGeometry(20, 20, length * 2);
     }
@@ -221,172 +225,196 @@
         // HTML
         shape = new THREE.Mesh(createBoxGeometry(85), createPlaneMaterial());
         shape.rotation.set(0.3, Math.PI / 2, 0);
-        shape.position.set(deviceWidth < 768 ? -30 : -25, 150, 0);
+        shape.position.set(isMobile ? -23 : -65, 150, 0);
         shape.scale.z = 0.0001;
-        scene.add(shape);
+        group.add(shape);
 
         label1 = createLabel("HTML");
-        label1.position.set(deviceWidth < 768 ? -98 : -130, 147, 0);
+        label1.position.set(isMobile ? -98 : -170, 147, 0);
         label1.rotation.y += 0.15;
-        scene.add(label1);
+        group.add(label1);
 
-        percentage1 = createLabel(deviceWidth < 768 ? "" : "80%");
-        percentage1.position.set(deviceWidth < 768 ? -30 : 0, 147, 0);
+        percentage1 = createLabel(isMobile ? "" : "80%");
+        percentage1.position.set(isMobile ? -30 : -40, 147, 0);
         // percentage1.rotation.y += 0.15;
-        scene.add(percentage1);
+        group.add(percentage1);
 
         // SASS/CSS
         shape2 = new THREE.Mesh(createBoxGeometry(90), createPlaneMaterial());
         shape2.rotation.set(0.3, Math.PI / 2, 0);
-        shape2.position.set(deviceWidth < 768 ? -30 : -25, deviceWidth < 768 ? 125 : 120, 0);
+        shape2.position.set(isMobile ? -30 : -65, isMobile ? 125 : 120, 0);
         shape2.scale.z = 0.0001;
-        scene.add(shape2);
+        group.add(shape2);
 
         label2 = createLabel("SASS");
-        label2.position.set(deviceWidth < 768 ? -98 : -130, deviceWidth < 768 ? 122 : 115, 0);
+        label2.position.set(isMobile ? -98 : -170, isMobile ? 122 : 115, 0);
         label2.rotation.y += 0.15;
-        scene.add(label2);
+        group.add(label2);
 
-        percentage2 = createLabel(deviceWidth < 768 ? "" : "90%");
-        percentage2.position.set(deviceWidth < 768 ? -25 : 0, deviceWidth < 768 ? 122 : 115, 0);
+        percentage2 = createLabel(isMobile ? "" : "90%");
+        percentage2.position.set(isMobile ? -25 : -40, isMobile ? 122 : 115, 0);
         // percentage2.rotation.y += 0.15;
-        scene.add(percentage2);
+        group.add(percentage2);
 
         // JS
         shape3 = new THREE.Mesh(createBoxGeometry(90), createPlaneMaterial());
         shape3.rotation.set(0.3, Math.PI / 2, 0);
-        shape3.position.set(deviceWidth < 768 ? -30 : -25, deviceWidth < 768 ? 100 : 90, 0);
+        shape3.position.set(isMobile ? -30 : -65, isMobile ? 100 : 90, 0);
         shape3.scale.z = 0.0001;
-        scene.add(shape3);
+        group.add(shape3);
 
         label3 = createLabel("Javascript");
-        label3.position.set(deviceWidth < 768 ? -98 : -130, deviceWidth < 768 ? 98 : 85, 0);
+        label3.position.set(isMobile ? -98 : -170, isMobile ? 98 : 85, 0);
         label3.rotation.y += 0.15;
-        scene.add(label3);
+        group.add(label3);
 
-        percentage3 = createLabel(deviceWidth < 768 ? "" : "90%");
-        percentage3.position.set(deviceWidth < 768 ? -25 : 0, deviceWidth < 768 ? 98 : 85, 0);
+        percentage3 = createLabel(isMobile ? "" : "90%");
+        percentage3.position.set(isMobile ? -25 : -40, isMobile ? 98 : 85, 0);
         // percentage3.rotation.y += 0.15;
-        scene.add(percentage3);
+        group.add(percentage3);
 
         // React/Redux
         shape4 = new THREE.Mesh(createBoxGeometry(95), createPlaneMaterial());
         shape4.rotation.set(0.3, Math.PI / 2, 0);
-        shape4.position.set(deviceWidth < 768 ? -30 : -25, deviceWidth < 768 ? 75 : 60, 0);
+        shape4.position.set(isMobile ? -30 : -65, isMobile ? 75 : 60, 0);
         shape4.scale.z = 0.0001;
-        scene.add(shape4);
+        group.add(shape4);
 
         label4 = createLabel("React/Redux");
-        label4.position.set(deviceWidth < 768 ? -98 : -130, deviceWidth < 768 ? 73 : 55, 0);
+        label4.position.set(isMobile ? -98 : -170, isMobile ? 73 : 55, 0);
         label4.rotation.y += 0.15;
-        scene.add(label4);
+        group.add(label4);
 
-        percentage4 = createLabel(deviceWidth < 768 ? "" : "95%");
-        percentage4.position.set(deviceWidth < 768 ? -25 : 0, deviceWidth < 768 ? 73 : 55, 0);
+        percentage4 = createLabel(isMobile ? "" : "95%");
+        percentage4.position.set(isMobile ? -25 : -40, isMobile ? 73 : 55, 0);
         // percentage4.rotation.y += 0.15;
-        scene.add(percentage4);
+        group.add(percentage4);
 
         // ReactNative
         shape5 = new THREE.Mesh(createBoxGeometry(90), createPlaneMaterial());
         shape5.rotation.set(0.3, Math.PI / 2, 0);
-        shape5.position.set(deviceWidth < 768 ? -30 : -25, deviceWidth < 768 ? 50 : 30, 0);
+        shape5.position.set(isMobile ? -30 : -65, isMobile ? 50 : 30, 0);
         shape5.scale.z = 0.0001;
-        scene.add(shape5);
+        group.add(shape5);
 
         label5 = createLabel("React Native");
-        label5.position.set(deviceWidth < 768 ? -98 : -130, deviceWidth < 768 ? 48 : 25, 0);
+        label5.position.set(isMobile ? -98 : -170, isMobile ? 48 : 25, 0);
         label5.rotation.y += 0.15;
-        scene.add(label5);
+        group.add(label5);
 
-        percentage5 = createLabel(deviceWidth < 768 ? "" : "90%");
-        percentage5.position.set(deviceWidth < 768 ? -25 : 0, deviceWidth < 768 ? 48 : 25, 0);
+        percentage5 = createLabel(isMobile ? "" : "90%");
+        percentage5.position.set(isMobile ? -25 : -40, isMobile ? 48 : 25, 0);
         // percentage5.rotation.y += 0.15;
-        scene.add(percentage5);
+        group.add(percentage5);
 
         // Node/Express
         shape6 = new THREE.Mesh(createBoxGeometry(60), createPlaneMaterial());
         shape6.rotation.set(0.3, Math.PI / 2, 0);
-        shape6.position.set(deviceWidth < 768 ? -30 : -25, deviceWidth < 768 ? 25 : 0, 0);
+        shape6.position.set(isMobile ? -30 : -65, isMobile ? 25 : 0, 0);
         shape6.scale.z = 0.0001;
-        scene.add(shape6);
+        group.add(shape6);
 
         label6 = createLabel("NodeJS");
-        label6.position.set(deviceWidth < 768 ? -98 : -130, deviceWidth < 768 ? 22 : -5, 0);
+        label6.position.set(isMobile ? -98 : -170, isMobile ? 22 : -5, 0);
         label6.rotation.y += 0.15;
-        scene.add(label6);
+        group.add(label6);
 
-        percentage6 = createLabel(deviceWidth < 768 ? "" : "60%");
-        percentage6.position.set(deviceWidth < 768 ? -25 : 0, deviceWidth < 768 ? 22 : -5, 0);
+        percentage6 = createLabel(isMobile ? "" : "60%");
+        percentage6.position.set(isMobile ? -25 : -40, isMobile ? 22 : -5, 0);
         // percentage6.rotation.y += 0.15;
-        scene.add(percentage6);
+        group.add(percentage6);
 
         // NextJS
         shape7 = new THREE.Mesh(createBoxGeometry(70), createPlaneMaterial());
         shape7.rotation.set(0.2, Math.PI / 2, 0);
-        shape7.position.set(deviceWidth < 768 ? -30 : -25, deviceWidth < 768 ? 0 : -30, 0);
+        shape7.position.set(isMobile ? -30 : -65, isMobile ? 0 : -30, 0);
         shape7.scale.z = 0.0001;
-        scene.add(shape7);
+        group.add(shape7);
 
         label7 = createLabel("NextJS");
-        label7.position.set(deviceWidth < 768 ? -98 : -130, deviceWidth < 768 ? -2 : -35, 0);
+        label7.position.set(isMobile ? -98 : -170, isMobile ? -2 : -35, 0);
         label7.rotation.y += 0.15;
-        scene.add(label7);
+        group.add(label7);
 
-        percentage7 = createLabel(deviceWidth < 768 ? "" : "70%");
-        percentage7.position.set(deviceWidth < 768 ? -25 : 0, deviceWidth < 768 ? -2 : -35, 0);
+        percentage7 = createLabel(isMobile ? "" : "70%");
+        percentage7.position.set(isMobile ? -25 : -40, isMobile ? -2 : -35, 0);
         // percentage7.rotation.y += 0.15;
-        scene.add(percentage7);
+        group.add(percentage7);
 
         // GraphQL
         shape8 = new THREE.Mesh(createBoxGeometry(60), createPlaneMaterial());
         shape8.rotation.set(0.2, Math.PI / 2, 0);
-        shape8.position.set(deviceWidth < 768 ? -30 : -25, deviceWidth < 768 ? -25 : -60, 0);
+        shape8.position.set(isMobile ? -30 : -65, isMobile ? -25 : -60, 0);
         shape8.scale.z = 0.0001;
-        scene.add(shape8);
+        group.add(shape8);
 
         label8 = createLabel("GraphQL");
-        label8.position.set(deviceWidth < 768 ? -98 : -130, deviceWidth < 768 ? -27 : -65, 0);
+        label8.position.set(isMobile ? -98 : -170, isMobile ? -27 : -65, 0);
         label8.rotation.y += 0.15;
-        scene.add(label8);
+        group.add(label8);
 
-        percentage8 = createLabel(deviceWidth < 768 ? "" : "60%");
-        percentage8.position.set(deviceWidth < 768 ? -25 : 0, deviceWidth < 768 ? -27 : -65, 0);
+        percentage8 = createLabel(isMobile ? "" : "60%");
+        percentage8.position.set(isMobile ? -25 : -40, isMobile ? -27 : -65, 0);
         // percentage8.rotation.y += 0.15;
-        scene.add(percentage8);
+        group.add(percentage8);
 
         // AWS
         shape9 = new THREE.Mesh(createBoxGeometry(50), createPlaneMaterial());
         shape9.rotation.set(0.2, Math.PI / 2, 0);
-        shape9.position.set(deviceWidth < 768 ? -30 : -25, deviceWidth < 768 ? -50 : -90, 0);
+        shape9.position.set(isMobile ? -30 : -65, isMobile ? -50 : -90, 0);
         shape9.scale.z = 0.0001;
-        scene.add(shape9);
+        group.add(shape9);
 
         label9 = createLabel("AWS");
-        label9.position.set(deviceWidth < 768 ? -98 : -130, deviceWidth < 768 ? -52 : -98, 0);
+        label9.position.set(isMobile ? -98 : -170, isMobile ? -52 : -98, 0);
         label9.rotation.y += 0.15;
-        scene.add(label9);
+        group.add(label9);
 
-        percentage9 = createLabel(deviceWidth < 768 ? "" : "50%");
-        percentage9.position.set(deviceWidth < 768 ? -25 : 0, deviceWidth < 768 ? -52 : -98, 0);
+        percentage9 = createLabel(isMobile ? "" : "50%");
+        percentage9.position.set(isMobile ? -25 : -40, isMobile ? -52 : -98, 0);
         // percentage9.rotation.y += 0.15;
-        scene.add(percentage9);
+        group.add(percentage9);
+
+        scene.add(group);
 
         initGraphTween();
     }
 
+    function pauseOffscreenAnimations() {
+        const options = { threshold: 0.15 };
+        const observer = new IntersectionObserver(handleAboutSectionOnScreen, options);
+        const target = document.getElementById('about');
+
+        observer.observe(target);
+    }
+
+    function handleAboutSectionOnScreen(entries, observer) {
+        isOnscreen = entries[0].isIntersecting;
+        if (isOnscreen) animate();
+    }
+
+    function handleOrientationChange(e) {
+        alert("ORIENTATION CHANGE: ")
+        var gammaRotation = e.gamma ? e.gamma * (Math.PI / 180) : 0;
+        group.rotation.y = gammaRotation;
+    }
+
     function initListeners() {
         window.addEventListener('resize', onWindowResize);
+        window.addEventListener('deviceorientation', handleOrientationChange);
+        pauseOffscreenAnimations();
+
     }
 
     function onWindowResize() {
-        console.log("RESIZE")
+        console.log("RESIZING ABOUT SECTION")
         camera.aspect = deviceWidth / deviceHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(deviceWidth, deviceHeight);
     }
 
     function animate() {
-        requestAnimationFrame(animate);
+        if (isOnscreen) requestAnimationFrame(animate);
         renderer.render(scene, camera);
         // controls.update();
         camera.lookAt(scene.position);

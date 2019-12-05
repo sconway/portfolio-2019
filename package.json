@@ -15,7 +15,8 @@
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-replace": "^1.0.0",
-    "gulp-terser": "^1.2.0"
+    "gulp-terser": "^1.2.0",
+    "three.orientation": "^1.1.1"
   },
   "devDependencies": {
     "del": "^5.1.0",

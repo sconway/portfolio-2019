@@ -1,20 +1,21 @@
 (function () {
-    var group;
-    var container;
-    var controls;
-    var particlesData = [];
-    var camera, scene, renderer;
-    var positions, colors;
-    var particles;
-    var pointCloud;
-    var particlePositions;
-    var linesMesh;
-    var maxParticleCount = 200;
-    var particleCount = 100;
-    var mouse = new THREE.Vector2();
-    var r = 1200;
-    var rHalf = r / 2;
-    var effectController = {
+    let group;
+    let container;
+    let controls;
+    let particlesData = [];
+    let camera, scene, renderer;
+    let positions, colors;
+    let particles;
+    let pointCloud;
+    let particlePositions;
+    let linesMesh;
+    let maxParticleCount = 200;
+    let particleCount = 100;
+    let mouse = new THREE.Vector2();
+    let r = 1200;
+    let rHalf = r / 2;
+    let isOnscreen = true;
+    let effectController = {
         showDots: true,
         showLines: true,
         minDistance: 150,
@@ -42,7 +43,7 @@
             "build/assets/wave-13.png",
         ];
         const obj = { curImg: 0 };
-        const tween = TweenMax.to(obj, 0.5,
+        TweenMax.to(obj, 0.5,
             {
                 curImg: images.length - 1, // animate propery curImg to number of images
                 roundProps: "curImg",	   // only integers so it can be used as an array index
@@ -55,35 +56,18 @@
                 }
             }
         );
-        const fade = TweenMax.to("#introImage", 1, { opacity: 0 });
-
-        new ScrollMagic.Scene({
-            triggerElement: "#waveTrigger",
-            offset: window.innerHeight / 2 + 700,
-            duration: window.innerHeight
-        })
-            .setTween(tween)
-            .addTo(controller);
-
-        new ScrollMagic.Scene({
-            triggerElement: "#waveTrigger",
-            offset: window.innerHeight / 2 + 800,
-            duration: 500
-        })
-            .setTween(fade)
-            .addTo(controller);
     }
 
     function initHandMoveAnimation() {
-        const imageWidth = document.getElementById("introImage").width;
         const slide = TweenMax.to("#introImage", 1, {
-            x: (window.innerWidth / 2) - (imageWidth / 1.5)
+            x: -window.innerWidth,
+            opacity: 0
         });
 
         new ScrollMagic.Scene({
             triggerElement: "#waveTrigger",
-            offset: window.innerHeight / 2 + 600,
-            duration: 200
+            offset: window.innerHeight / 2 + 200,
+            duration: 400
         })
             .setTween(slide)
             .addTo(controller);
@@ -141,27 +125,26 @@
         addTextTween("#headingString7", window.innerWidth, 800, -180);
     }
 
-    initWaveAnimation();
-    initHandMoveAnimation();
-    initHeadingAnimation();
-    initTextAnimation();
-    initIntroPinAnimation();
-    init();
-    initCamera();
-    initListeners();
-    initRenderer();
-    initParticles();
-    initLines();
-    animate();
+    function pauseOffscreenAnimations() {
+        const options = { threshold: 0.4 };
+        const observer = new IntersectionObserver(handleAboutSectionOnScreen, options);
+        const target = document.getElementById('intro');
+
+        observer.observe(target);
+    }
+
+    function handleAboutSectionOnScreen(entries, observer) {
+        isOnscreen = entries[0].isIntersecting;
+        if (isOnscreen) animate();
+    }
+
+    /**
+     * ========================= ThreeJS functions ==========================
+     */
 
     function onMouseMove(event) {
-
-        // calculate mouse position in normalized device coordinates
-        // (-1 to +1) for both components
-
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-
     }
 
     function initCamera() {
@@ -182,20 +165,25 @@
     function initListeners() {
         window.addEventListener('mousemove', onMouseMove, false);
         window.addEventListener('resize', onWindowResize, false);
+        window.addEventListener("load", pauseOffscreenAnimations, false);
     }
 
     function init() {
-        // controls = new THREE.OrbitControls(camera, container);
         scene = new THREE.Scene();
         group = new THREE.Group();
+
+        if (window.innerWidth < 769) {
+            controls = new DeviceOrientationControls(group);
+        }
+
         scene.add(group);
     }
 
     function initParticles() {
-        var segments = maxParticleCount * maxParticleCount;
+        let segments = maxParticleCount * maxParticleCount;
         positions = new Float32Array(segments * 3);
         colors = new Float32Array(segments * 3);
-        var pMaterial = new THREE.PointsMaterial({
+        let pMaterial = new THREE.PointsMaterial({
             color: 0xFFFFFF,
             size: 3,
             blending: THREE.AdditiveBlending,
@@ -205,10 +193,10 @@
         particles = new THREE.BufferGeometry();
         particlePositions = new Float32Array(maxParticleCount * 3);
 
-        for (var i = 0; i < maxParticleCount; i++) {
-            var x = Math.random() * r - r / 2;
-            var y = Math.random() * r - r / 2;
-            var z = Math.random() * r - r / 2;
+        for (let i = 0; i < maxParticleCount; i++) {
+            let x = Math.random() * r - r / 2;
+            let y = Math.random() * r - r / 2;
+            let z = Math.random() * r - r / 2;
             particlePositions[i * 3] = x;
             particlePositions[i * 3 + 1] = y;
             particlePositions[i * 3 + 2] = z;
@@ -226,12 +214,12 @@
     }
 
     function initLines() {
-        var geometry = new THREE.BufferGeometry();
+        let geometry = new THREE.BufferGeometry();
         geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3).setDynamic(true));
         geometry.addAttribute('color', new THREE.BufferAttribute(colors, 3).setDynamic(true));
         geometry.computeBoundingSphere();
         geometry.setDrawRange(0, 0);
-        var material = new THREE.LineBasicMaterial({
+        let material = new THREE.LineBasicMaterial({
             vertexColors: THREE.VertexColors,
             blending: THREE.AdditiveBlending,
             transparent: true
@@ -247,15 +235,15 @@
     }
 
     function animate() {
-        var vertexpos = 0;
-        var colorpos = 0;
-        var numConnected = 0;
+        let vertexpos = 0;
+        let colorpos = 0;
+        let numConnected = 0;
 
-        for (var i = 0; i < particleCount; i++)
+        for (let i = 0; i < particleCount; i++)
             particlesData[i].numConnections = 0;
 
-        for (var i = 0; i < particleCount; i++) {
-            var particleData = particlesData[i];
+        for (let i = 0; i < particleCount; i++) {
+            let particleData = particlesData[i];
             particlePositions[i * 3] += particleData.velocity.x;
             particlePositions[i * 3 + 1] += particleData.velocity.y;
             particlePositions[i * 3 + 2] += particleData.velocity.z;
@@ -270,21 +258,21 @@
                 continue;
 
             // Check collision
-            for (var j = i + 1; j < particleCount; j++) {
-                var particleDataB = particlesData[j];
+            for (let j = i + 1; j < particleCount; j++) {
+                let particleDataB = particlesData[j];
 
                 if (effectController.limitConnections && particleDataB.numConnections >= effectController.maxConnections)
                     continue;
 
-                var dx = particlePositions[i * 3] - particlePositions[j * 3];
-                var dy = particlePositions[i * 3 + 1] - particlePositions[j * 3 + 1];
-                var dz = particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
-                var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                let dx = particlePositions[i * 3] - particlePositions[j * 3];
+                let dy = particlePositions[i * 3 + 1] - particlePositions[j * 3 + 1];
+                let dz = particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
+                let dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
                 if (dist < effectController.minDistance) {
                     particleData.numConnections++;
                     particleDataB.numConnections++;
-                    var alpha = 1.0 - dist / effectController.minDistance;
+                    let alpha = 1.0 - dist / effectController.minDistance;
                     positions[vertexpos++] = particlePositions[i * 3];
                     positions[vertexpos++] = particlePositions[i * 3 + 1];
                     positions[vertexpos++] = particlePositions[i * 3 + 2];
@@ -306,13 +294,30 @@
         linesMesh.geometry.attributes.position.needsUpdate = true;
         linesMesh.geometry.attributes.color.needsUpdate = true;
         pointCloud.geometry.attributes.position.needsUpdate = true;
-        requestAnimationFrame(animate);
+
+        if (isOnscreen) requestAnimationFrame(animate);
+
         render();
     }
 
     function render() {
         group.rotation.y += (mouse.x / 100);
 
+        if (controls) controls.update();
+
         renderer.render(scene, camera);
     }
+
+    initWaveAnimation();
+    initHandMoveAnimation();
+    initHeadingAnimation();
+    initTextAnimation();
+    initIntroPinAnimation();
+    initCamera();
+    init();
+    initListeners();
+    initRenderer();
+    initParticles();
+    initLines();
+    animate();
 })();
