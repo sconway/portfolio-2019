@@ -397,11 +397,16 @@
         alert("ORIENTATION CHANGE: ")
         var gammaRotation = e.gamma ? e.gamma * (Math.PI / 180) : 0;
         group.rotation.y = gammaRotation;
+        group.rotation.x = gammaRotation;
     }
 
     function initListeners() {
         window.addEventListener('resize', onWindowResize);
-        window.addEventListener('deviceorientation', handleOrientationChange);
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', handleOrientationChange);
+        } else {
+            alert("not supported")
+        }
         pauseOffscreenAnimations();
 
     }

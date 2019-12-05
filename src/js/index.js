@@ -172,10 +172,6 @@
         scene = new THREE.Scene();
         group = new THREE.Group();
 
-        if (window.innerWidth < 769) {
-            controls = new DeviceOrientationControls(group);
-        }
-
         scene.add(group);
     }
 
@@ -302,8 +298,6 @@
 
     function render() {
         group.rotation.y += (mouse.x / 100);
-
-        if (controls) controls.update();
 
         renderer.render(scene, camera);
     }
