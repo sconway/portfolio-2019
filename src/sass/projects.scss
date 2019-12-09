@@ -1,0 +1,74 @@
+@import "./variables.scss";
+
+.projects {
+    position: relative;
+
+    .project {
+        border: 1px solid $secondary;
+        border-radius: 4px;
+        margin: 15px;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .project__image {
+        height: auto;
+        width: 100%;
+    }
+    
+    .project__content {
+        padding: 15px;
+    }
+
+    .project__title {
+        margin-bottom: 15px;
+        margin-top: 0;
+    }
+
+    .project__details-link {
+        color: $secondary;
+        display: block;
+        text-decoration: none;
+        text-align: right;
+    }
+
+    .project__details {
+        background: $primary;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 0;
+        width: 0;
+        overflow: hidden;
+        transition: all 500ms ease;
+        z-index: 2;
+
+        &.active {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .project__details__close {
+        position: absolute;
+        right: 25px;
+        top: 25px;
+
+        &::before,
+        &::after {
+            background-color: $secondary;
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 2px;
+            width: 30px;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+    }
+}

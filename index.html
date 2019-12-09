@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portfolio | Scott Conway</title>
 
-    <link rel="stylesheet" href="build/index.css?v=1575587965083" />
+    <link rel="stylesheet" href="build/index.css?v=1575856890501" />
 </head>
 
 <body id="body">
@@ -18,7 +18,7 @@
         <div class="intro__content-wrapper" id="introContent">
             <img id="introImage" src="build/assets/wave-1.png" alt="waving hand" class="intro__image">
             <div class="intro__message-wrapper">
-                <h1 class="intro__heading" id="introHeading">Lorem Ipsum</h1>
+                <h1 class="intro__heading" id="introHeading">Hi, I'm Scott</h1>
                 <h2 class="intro__sub-heading" id="introSubHeading">
                     <div class="intro__sub-heading__text" id="headingString1">I</div>
                     <div class="intro__sub-heading__text" id="headingString2">like</div>
@@ -35,71 +35,46 @@
     <!-- ABOUT SECTION -->
     <section class="section about" id="about">
         <div id="graphTrigger"></div>
-        <h2 class="about__heading">About Me</h2>
-        <p class="about__content">
-            I am a full-stack Javascript developer from Boston, specializing in complex
-            and interactive user interfaces. A few of my technical skills include:
-        </p>
-        <figure class="about__experience-graph" id="graph">
-            <!-- <div class="about__percentage about__html" id="aboutHTMLWrapper">
-                <span class="about__technology">HTML</span>
-                <span class="about__percentage__value">
-                    <i id="htmlPercentage">0</i>%
-                </span>
-            </div>
-            <div class="about__percentage about__css" id="aboutCSSWrapper">
-                <span class="about__technology">SCSS/CSS</span>
-                <span class="about__percentage__value">
-                    <i id="cssPercentage">0</i>%
-                </span>
-            </div>
-            <div class="about__percentage about__js" id="aboutJSWrapper">
-                <span class="about__technology">Javascript</span>
-                <span class="about__percentage__value">
-                    <i id="jsPercentage">0</i>%
-                </span>
-            </div>
-            <div class="about__percentage about__react" id="aboutReactWrapper">
-                <span class="about__technology">React/Redux</span>
-                <span class="about__percentage__value">
-                    <i id="reactPercentage">0</i>%
-                </span>
-            </div>
-            <div class="about__percentage about__rn" id="aboutReactNativeWrapper">
-                <span class="about__technology">React Native</span>
-                <span class="about__percentage__value">
-                    <i id="rnPercentage">0</i>%
-                </span>
-            </div>
-            <div class="about__percentage about__node" id="aboutNodeWrapper">
-                <span class="about__technology">NodeJS</span>
-                <span class="about__percentage__value">
-                    <i id="nodePercentage">0</i>%
-                </span>
-            </div>
-            <div class="about__percentage about__next" id="aboutNextWrapper">
-                <span class="about__technology">NextJS</span>
-                <span class="about__percentage__value">
-                    <i id="nextPercentage">0</i>%
-                </span>
-            </div>
-            <div class="about__percentage about__graphql" id="aboutGraphqlWrapper">
-                <span class="about__technology">GraphQL</span>
-                <span class="about__percentage__value">
-                    <i id="graphqlPercentage">0</i>%
-                </span>
-            </div>
-            <div class="about__percentage about__aws" id="aboutAWSWrapper">
-                <span class="about__technology">AWS</span>
-                <span class="about__percentage__value">
-                    <i id="awsPercentage">0</i>%
-                </span>
-            </div> -->
-        </figure>
+        <div class="about__intro">
+            <h2 class="about__heading">About Me</h2>
+            <p class="about__content">
+                I am a full-stack Javascript developer from Boston, specializing in complex
+                and interactive user interfaces. A few of my technical skills include:
+            </p>
+        </div>
+        <figure class="about__experience-graph" id="graph"></figure>
     </section>
 
     <section class="section projects" id="projects">
-        <div class="project"></div>
+        <article class="project" id="wit">
+            <img src="http://lorempixel.com/400/200/abstract/" alt="Wentworth Institute of Technology website redesign"
+                class="project__image" />
+            <div class="project__content">
+                <h2 class="project__title">Wentworth Institute of Technology</h2>
+                <a href="javascript:;" class="project__details-link">Details</a>
+            </div>
+        </article>
+
+        <article class="project" id="zildjian">
+            <img src="http://lorempixel.com/400/200/abstract/" alt="Zildjian Cymbals website redesign"
+                class="project__image" />
+            <div class="project__content">
+                <h2 class="project__title">Zildjian Cymbals</h2>
+                <a href="javascript:;" class="project__details-link">Details</a>
+            </div>
+        </article>
+
+        <article class="project__details" id="projectDetails">
+            <a href="javascript:;" class="project__details__close" id="projectClose">
+                <span class="hidden">Close project details</span>
+            </a>
+
+            <h2 class="project__details__title" id="projectTitle"></h2>
+            <p class="project__details__description" id="projectDescription"></p>
+            <img src="" alt="project image" class="project__details__image" id="projectImage" />
+            <span class="project__details__year" id="projectYear"></span>
+            <p class="project__details__technologies" id="projectTechnologies"></p>
+        </article>
     </section>
     <section class="section"></section>
 

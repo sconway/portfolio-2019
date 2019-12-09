@@ -12,19 +12,33 @@
     let maxParticleCount = 200;
     let particleCount = 100;
     let mouse = new THREE.Vector2();
-    let r = 1200;
+    let r = 1600;
     let rHalf = r / 2;
     let isOnscreen = true;
     let effectController = {
         showDots: true,
         showLines: true,
-        minDistance: 150,
+        minDistance: 250,
         limitConnections: false,
         maxConnections: 20,
         particleCount: 500
     };
+    let controller = new ScrollMagic.Controller();
 
-    const controller = new ScrollMagic.Controller();
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this, args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
 
     function initWaveAnimation() {
         const images = [
@@ -80,7 +94,6 @@
             duration: 1000
         })
             .setPin("#introContent")
-            .addIndicators()
             .addTo(controller);
     }
 
@@ -164,7 +177,7 @@
 
     function initListeners() {
         window.addEventListener('mousemove', onMouseMove, false);
-        window.addEventListener('resize', onWindowResize, false);
+        window.addEventListener('resize', resetScene, false);
         window.addEventListener("load", pauseOffscreenAnimations, false);
     }
 
@@ -222,12 +235,6 @@
         });
         linesMesh = new THREE.LineSegments(geometry, material);
         group.add(linesMesh);
-    }
-
-    function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
     function animate() {
@@ -302,16 +309,44 @@
         renderer.render(scene, camera);
     }
 
-    initWaveAnimation();
-    initHandMoveAnimation();
-    initHeadingAnimation();
-    initTextAnimation();
-    initIntroPinAnimation();
-    initCamera();
-    init();
-    initListeners();
-    initRenderer();
-    initParticles();
-    initLines();
-    animate();
+    var resetScene = debounce(function () {
+        cancelAnimationFrame(animate);
+        document.querySelector('.intro canvas').remove();
+
+        controller = controller.destroy(true);
+        controller = new ScrollMagic.Controller();
+        group = null;
+        container = null;
+        controls = null;
+        particlesData = [];
+        camera = null;
+        scene = null;
+        renderer = null;
+        positions = null;
+        colors = null;
+        particles = null;
+        pointCloud = null;
+        particlePositions = null;
+        linesMesh = null;
+        mouse = new THREE.Vector2();
+
+        initScene();
+    }, 250);
+
+    function initScene() {
+        initWaveAnimation();
+        initHandMoveAnimation();
+        initHeadingAnimation();
+        initTextAnimation();
+        initIntroPinAnimation();
+        initCamera();
+        init();
+        initListeners();
+        initRenderer();
+        initParticles();
+        initLines();
+        animate();
+    }
+
+    initScene();
 })();

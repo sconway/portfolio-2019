@@ -15,6 +15,7 @@
         percentage8,
         percentage9,
         group = new THREE.Group(),
+        mouse = new THREE.Vector2(),
         shape2,
         label2,
         shape3,
@@ -43,6 +44,21 @@
         return degrees * (Math.PI / 180);
     }
 
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this, args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
     function initRenderer() {
         container = document.getElementById("graph");
         renderer = new THREE.WebGLRenderer({
@@ -67,9 +83,6 @@
     }
 
     function initScene() {
-        // controls = new THREE.OrbitControls(camera, renderer.domElement);
-        // controls.enablePan = false;
-        raycaster = new THREE.Raycaster();
         scene = new THREE.Scene();
 
         var ambientLight = new THREE.AmbientLight(0x111111);
@@ -136,19 +149,6 @@
         return TweenMax.to(item, 1, { opacity: 1 })
     }
 
-    function createCounterTween(number, element) {
-        let counter = { var: 0 };
-        const el = document.getElementById(element);
-
-        return TweenMax.to(counter, 5, {
-            var: number,
-            onUpdate: function () {
-                el.innerHTML = Math.ceil(counter.var);
-            },
-            // ease: Circ.easeOut
-        });
-    }
-
     function initGraphTween() {
         // HTML
         addTween(createGrowTween(shape.scale), 0, 100);
@@ -202,7 +202,7 @@
         // GraphQL
         addTween(createGrowTween(shape8.scale), 250, 100);
         addTween(createTranslateTween(shape8.position, isMobile ? 7 : -6), 250, 100);
-        addTween(createTranslateTween(percentage8.position, isMobile ? 48 : 83), 250, 100);
+        addTween(createTranslateTween(percentage8.position, isMobile ? 48 : 63), 250, 100);
         addTween(createFadeTween(shape8.material), 250, 5);
         addTween(createFadeTween(label8.material), 230, 50);
         addTween(createFadeTween(percentage8.material), 230, 50);
@@ -246,7 +246,7 @@
         shape2.scale.z = 0.0001;
         group.add(shape2);
 
-        label2 = createLabel("SASS");
+        label2 = createLabel("CSS/SCSS");
         label2.position.set(isMobile ? -98 : -170, isMobile ? 122 : 115, 0);
         label2.rotation.y += 0.15;
         group.add(label2);
@@ -400,30 +400,66 @@
         group.rotation.x = gammaRotation;
     }
 
+    function onMouseMove(event) {
+        mouse.x = (event.clientX - window.innerWidth / 2) / 6;
+        mouse.y = (event.clientY - window.innerHeight / 2) / 6;
+    }
+
     function initListeners() {
-        window.addEventListener('resize', onWindowResize);
+        window.addEventListener('resize', resetScene, false);
+        window.addEventListener('mousemove', onMouseMove, false);
+
         if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', handleOrientationChange);
         } else {
             alert("not supported")
         }
-        pauseOffscreenAnimations();
 
+        pauseOffscreenAnimations();
     }
 
-    function onWindowResize() {
-        console.log("RESIZING ABOUT SECTION")
-        camera.aspect = deviceWidth / deviceHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(deviceWidth, deviceHeight);
+    function animateGraphElements() {
+        camera.position.x += (mouse.x - camera.position.x) * .05;
+        camera.position.y += (- mouse.y - camera.position.y) * .05;
     }
 
     function animate() {
         if (isOnscreen) requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-        // controls.update();
-        camera.lookAt(scene.position);
+        if (renderer) renderer.render(scene, camera);
+        if (camera) {
+            camera.lookAt(scene.position);
+            if (!isMobile) animateGraphElements();
+        }
+
+        shape.rotation.x += 0.005;
+        shape2.rotation.x += 0.005;
+        shape3.rotation.x += 0.005;
+        shape4.rotation.x += 0.005;
+        shape5.rotation.x += 0.005;
+        shape6.rotation.x += 0.005;
+        shape7.rotation.x += 0.005;
+        shape8.rotation.x += 0.005;
+        shape9.rotation.x += 0.005;
     }
+
+    var resetScene = debounce(function () {
+        cancelAnimationFrame(animate);
+        controller = controller.destroy(true);
+        controller = new ScrollMagic.Controller();
+        group = new THREE.Group();
+        camera = null;
+        renderer = null;
+        container = null;
+        isOnscreen = false;
+        font = null;
+        scene = null;
+        deviceHeight = window.innerHeight;
+        deviceWidth = window.innerWidth;
+        isPortrait = deviceHeight > deviceWidth;
+        isMobile = deviceWidth < 768;
+        document.querySelector('.about canvas').remove();
+        generateFont();
+    }, 250);
 
     function init() {
         initRenderer();

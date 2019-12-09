@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .section {
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
 
     &:nth-of-type(1) {
@@ -25,7 +25,7 @@
 
         canvas {
             &[style] {
-                opacity: 0.4;
+                opacity: 0.2;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -33,9 +33,5 @@
                 width: 100% !important;
             }
         }
-    }
-
-    &.about {
-        padding: 15px;
     }
 }
