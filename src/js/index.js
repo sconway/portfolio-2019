@@ -14,7 +14,6 @@
     let mouse = new THREE.Vector2();
     let r = 1600;
     let rHalf = r / 2;
-    let isOnscreen = true;
     let effectController = {
         showDots: true,
         showLines: true,
@@ -147,14 +146,19 @@
     }
 
     function handleAboutSectionOnScreen(entries, observer) {
-        isOnscreen = entries[0].isIntersecting;
-        if (isOnscreen) animate();
+        if (entries[0].isIntersecting) {
+            renderer.setAnimationLoop(() => {
+                update();
+                render();
+            });
+        } else {
+            renderer.setAnimationLoop(null)
+        }
     }
 
     /**
      * ========================= ThreeJS functions ==========================
      */
-
     function onMouseMove(event) {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
@@ -173,6 +177,11 @@
         renderer.gammaInput = true;
         renderer.gammaOutput = true;
         container.appendChild(renderer.domElement);
+
+        renderer.setAnimationLoop(() => {
+            update();
+            render();
+        });
     }
 
     function initListeners() {
@@ -237,7 +246,7 @@
         group.add(linesMesh);
     }
 
-    function animate() {
+    function update() {
         let vertexpos = 0;
         let colorpos = 0;
         let numConnected = 0;
@@ -297,10 +306,6 @@
         linesMesh.geometry.attributes.position.needsUpdate = true;
         linesMesh.geometry.attributes.color.needsUpdate = true;
         pointCloud.geometry.attributes.position.needsUpdate = true;
-
-        if (isOnscreen) requestAnimationFrame(animate);
-
-        render();
     }
 
     function render() {
@@ -310,7 +315,6 @@
     }
 
     var resetScene = debounce(function () {
-        cancelAnimationFrame(animate);
         document.querySelector('.intro canvas').remove();
 
         controller = controller.destroy(true);
@@ -345,7 +349,6 @@
         initRenderer();
         initParticles();
         initLines();
-        animate();
     }
 
     initScene();

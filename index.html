@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portfolio | Scott Conway</title>
 
-    <link rel="stylesheet" href="build/index.css?v=1575856890501" />
+    <link rel="stylesheet" href="build/index.css?v=1576024624763" />
 </head>
 
 <body id="body">
@@ -46,6 +46,12 @@
     </section>
 
     <section class="section projects" id="projects">
+        <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="shape-overlays__path"></path>
+            <path class="shape-overlays__path"></path>
+            <path class="shape-overlays__path"></path>
+        </svg>
+
         <article class="project" id="wit">
             <img src="http://lorempixel.com/400/200/abstract/" alt="Wentworth Institute of Technology website redesign"
                 class="project__image" />
@@ -69,11 +75,13 @@
                 <span class="hidden">Close project details</span>
             </a>
 
-            <h2 class="project__details__title" id="projectTitle"></h2>
-            <p class="project__details__description" id="projectDescription"></p>
-            <img src="" alt="project image" class="project__details__image" id="projectImage" />
-            <span class="project__details__year" id="projectYear"></span>
-            <p class="project__details__technologies" id="projectTechnologies"></p>
+            <div class="project__details__content">
+                <h2 class="project__details__title" id="projectTitle"></h2>
+                <p class="project__details__description" id="projectDescription"></p>
+                <img src="" alt="project image" class="project__details__image" id="projectImage" />
+                <span class="project__details__year" id="projectYear"></span>
+                <p class="project__details__technologies" id="projectTechnologies"></p>
+            </div>
         </article>
     </section>
     <section class="section"></section>

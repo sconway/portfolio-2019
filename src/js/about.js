@@ -32,7 +32,6 @@
         label8,
         shape9,
         label9,
-        isOnscreen = false,
         deviceHeight = window.innerHeight,
         deviceWidth = window.innerWidth,
         isPortrait = deviceHeight > deviceWidth,
@@ -68,7 +67,7 @@
         renderer.setClearColor(0xc6c6c6, 0);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(deviceWidth, deviceHeight);
-
+        renderer.setAnimationLoop(update);
         container.appendChild(renderer.domElement);
     }
 
@@ -85,8 +84,8 @@
     function initScene() {
         scene = new THREE.Scene();
 
-        var ambientLight = new THREE.AmbientLight(0x111111);
-        var light = new THREE.PointLight(0xffffff);
+        var ambientLight = new THREE.HemisphereLight(0xc6c6c6, 0x111111);
+        var light = new THREE.DirectionalLight(0xa1a1a1);
         light.castShadow = true;
         light.position.set(20, 500, 50);
         scene.add(ambientLight);
@@ -95,11 +94,9 @@
 
     function createPlaneMaterial() {
         return new THREE.MeshLambertMaterial({
-            color: new THREE.Color(0xa1a1a1),
-            side: THREE.DoubleSide,
+            color: new THREE.Color(0xc6c6c6),
             transparent: true,
             opacity: 0,
-            emissive: new THREE.Color(0x666666)
         });
     }
 
@@ -389,8 +386,11 @@
     }
 
     function handleAboutSectionOnScreen(entries, observer) {
-        isOnscreen = entries[0].isIntersecting;
-        if (isOnscreen) animate();
+        if (entries[0].isIntersecting) {
+            renderer.setAnimationLoop(update);
+        } else {
+            renderer.setAnimationLoop(null);
+        }
     }
 
     function handleOrientationChange(e) {
@@ -410,7 +410,7 @@
         window.addEventListener('mousemove', onMouseMove, false);
 
         if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', handleOrientationChange);
+            document.addEventListener('deviceorientation', handleOrientationChange);
         } else {
             alert("not supported")
         }
@@ -423,8 +423,7 @@
         camera.position.y += (- mouse.y - camera.position.y) * .05;
     }
 
-    function animate() {
-        if (isOnscreen) requestAnimationFrame(animate);
+    function update() {
         if (renderer) renderer.render(scene, camera);
         if (camera) {
             camera.lookAt(scene.position);
@@ -443,14 +442,12 @@
     }
 
     var resetScene = debounce(function () {
-        cancelAnimationFrame(animate);
         controller = controller.destroy(true);
         controller = new ScrollMagic.Controller();
         group = new THREE.Group();
         camera = null;
         renderer = null;
         container = null;
-        isOnscreen = false;
         font = null;
         scene = null;
         deviceHeight = window.innerHeight;
@@ -467,7 +464,6 @@
         initScene();
         initListeners();
         addProjectsShape();
-        animate();
     }
 
     generateFont();

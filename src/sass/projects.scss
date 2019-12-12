@@ -1,7 +1,31 @@
 @import "./variables.scss";
 
 .projects {
+    padding-top: 15px;
     position: relative;
+
+    &.animating {
+        .project {
+            transition: transform 500ms ease;
+            transform: translateX(-100vw);
+        }
+    }
+
+    &.active {
+        .project__details {
+            opacity: 1;
+            transition: opacity 1000ms ease;
+            pointer-events: initial;
+        }
+
+        .project__details__close {
+            &::before,
+            &::after {
+                transition: width 500ms ease;
+                width: 30px;
+            }
+        }
+    }
 
     .project {
         border: 1px solid $secondary;
@@ -27,7 +51,7 @@
     }
 
     .project__details-link {
-        color: $secondary;
+        color: $primary;
         display: block;
         text-decoration: none;
         text-align: right;
@@ -38,19 +62,17 @@
         position: fixed;
         left: 0;
         top: 0;
-        height: 0;
-        width: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
         overflow: hidden;
-        transition: all 500ms ease;
-        z-index: 2;
-
-        &.active {
-            height: 100%;
-            width: 100%;
-        }
+        pointer-events: none;
+        transition: opacity 500ms ease;
+        z-index: 3;
     }
 
     .project__details__close {
+        cursor: pointer;
         position: absolute;
         right: 25px;
         top: 25px;
@@ -63,12 +85,51 @@
             left: 50%;
             top: 50%;
             height: 2px;
-            width: 30px;
+            width: 0px;
+            transition: width 250ms ease;
             transform: translate(-50%, -50%) rotate(45deg);
         }
 
         &::after {
             transform: translate(-50%, -50%) rotate(-45deg);
         }
+    }
+
+    .project__details__content {
+        padding: 15px;
+    }
+
+    .project__details__image {
+        width: 100%;
+    }
+
+    .shape-overlays {
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 3;
+    }
+    
+    .shape-overlays.is-opened {
+        pointer-events: auto;
+    }
+    
+    .shape-overlays__path:nth-of-type(1) {
+        fill: $tertiary;
+    }
+    
+    .shape-overlays__path:nth-of-type(2) {
+        fill: $secondary;
+    }
+    
+    .shape-overlays__path:nth-of-type(3) {
+        fill: $primary;
+    }
+    
+    .shape-overlays__path:nth-of-type(4) {
+        fill: $accent;
     }
 }
