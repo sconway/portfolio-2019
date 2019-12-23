@@ -1,163 +1,243 @@
+@import "./variables.scss";
+
 .about {
-    max-height: 660px;
     padding: 15px;
-
-    @media (orientation: landscape) {
-        max-height: 475px;
-    }
-    
-    @media (min-width: 400px) 
-    and (orientation : portrait) {
-       max-height: 740px;
-    }
-
-    @media (min-width: 768px) {
-        max-height: none;
-        min-height: 600px;
-    }
-}
-
-.about__experience-graph {
-    height: 100%;
-    margin: 0;
-    position: relative;
-
-    canvas {
-        /* Any IPad portrait layout */
-        @media only screen 
-        and (min-device-width : 768px) 
-        and (max-device-width : 1024px) 
-        and (orientation : portrait) {
-            margin: -140px 0;
-        }
-    }
-}
-
-.about {
     position: relative;
     z-index: 1;
 
-    &__intro {
-        margin: 0 auto;
-        max-width: 1000px;
-
-        @media (min-width: 768px) {
-            padding: 0 20px;
-        }
+    @media (min-width: $medium) {
+        min-height: initial;
+        padding: 30px;
     }
 
-    &__heading {
-        font-size: 2rem;
-
-        @media (min-width: 768px) {
-            font-size: 3rem;
-        }
+    &__intro {
+        // margin: 0 auto;
+        // max-width: 1000px;
     }
 
     &__content {
         font-size: 1.2rem;
         line-height: 1.4;
         
-        @media (min-width: 768px) {
-            font-size: 2rem;
+        @media (min-width: $small) {
+            font-size: 1.4rem;
+        }
+
+        @media (min-width: $medium) {
+            font-size: 1.8rem;
         }
     }
 
-    &__percentage {
-        color: #000;
-        font-size: 1.1rem;
-        position: absolute;
-        left: calc(50% - 145px);
-        opacity: 0;
-        
-        @media (min-width: 768px) {
-            left: calc(50% - 280px);
-            font-size: 1.5rem;
+    &__wrapper {
+        @media (min-width: $large) {
+            display: grid;
+            grid-template-columns: 65% 35%;
+        }
+    }
+
+    &__technologies {
+        margin-bottom: 20px;
+
+        @media (min-width: $medium) {
+            padding-left: 20px;
+        }
+    }
+
+    &__technologies__heading {
+        font-size: 1.4rem;
+
+        @media (min-width: $medium) {
+            font-size: 1.8rem;
+        }
+    }
+
+    &__technologies__list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+    }
+
+    &__technology {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        padding-right: 15px;
+
+        @media (min-width: $medium) {
+            font-size: 1.6rem;
+        }
+    }
+
+    .about__experience-graph {
+        height: 100%;
+        margin: 0 auto;
+        max-width: 400px;
+        padding: 30px 0;
+        position: relative;
+
+        @media (min-width: $medium) {
+            max-width: 600px;
         }
 
-        &__value {
-            display: none;
-            position: absolute;
-            left: 155px;
-            top: 50%;
-            transform: translateY(-50%);
+        @media (min-width: $large) {
+            max-width: initial;
+            margin: 0;
+        }
+    }
 
-            @media (min-width: 768px) {
-                display: block;
+    .graph__bar__wrapper {
+        align-items: center;
+        display: flex;
+        margin-bottom: 20px;
+        opacity: 0;
+        position: relative;
+
+        @media (min-width: $small) {
+            margin-bottom: 25px;
+        }
+
+        @media (min-width: $medium) {
+            margin-bottom: 35px;
+        }
+    }
+
+    .graph__bar {
+        height: $barHeightSmall;
+        width: 0;
+        perspective: 1000px;
+        perspective-origin: left;
+        position: relative;
+        transform-origin: center;
+        transform-style: preserve-3d;
+        top: -5px;
+
+        @media (min-width: $small) {
+            height: $barHeightMedium;
+        }
+
+        &__face {
+            background: rgba(12,12,12,0.4);
+            border: 1px solid $highlight;
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            // transform-origin: 15px center;
+
+            &--top {
+                transform: translate3d(0px, -$barHeightSmall/2, -$barHeightSmall/2) rotate3d(1, 0, 0, 90deg);
+
+                @media (min-width: $small) {
+                    transform: translate3d(0px, -$barHeightMedium/2, -$barHeightMedium/2) rotate3d(1, 0, 0, 90deg);
+                }
+            }
+
+            &--bottom {
+                transform: translate3d(0px, $barHeightSmall/2, -$barHeightSmall/2) rotate3d(1, 0, 0, 90deg);
+
+                @media (min-width: $small) {
+                    transform: translate3d(0px, $barHeightMedium/2, -$barHeightMedium/2) rotate3d(1, 0, 0, 90deg);
+                }
+            }
+
+            &--back {
+                transform: translate3d(0px, 0px, -$barHeightSmall);
+
+                @media (min-width: $small) {
+                    transform: translate3d(0px, 0px, -$barHeightMedium);
+                }
+            }
+
+            &--left,
+            &--right {
+                height: $barHeightSmall;
+                width: $barHeightSmall;
+
+                @media (min-width: $small) {
+                    height: $barHeightMedium;
+                    width: $barHeightMedium;
+                }
+                // transform: translate3d(0px, 25px, -25px) rotate3d(2, 0, 0, 45deg);
+            }
+            
+            &--left {
+                height: $barHeightSmall;
+                width: $barHeightSmall;
+                transform: translate3d(-$barHeightSmall/2, 0px, -$barHeightSmall/2) rotate3d(0, 1, 0, 90deg);
+
+                @media (min-width: $small) {
+                    height: $barHeightMedium;
+                    width: $barHeightMedium;
+                    transform: translate3d(-$barHeightMedium/2, 0px, -$barHeightMedium/2) rotate3d(0, 1, 0, 90deg);
+                }
+            }
+
+            &--right {
+                height: $barHeightSmall;
+                width: $barHeightSmall;
+                transform: translate3d(calc(100% - (#{$barHeightSmall} / 2)), 0px, -$barHeightSmall/2) rotate3d(0, 1, 0, 90deg);
+
+                @media (min-width: $small) {
+                    height: $barHeightMedium;
+                    width: $barHeightMedium;
+                    transform: translate3d(calc(100% - (#{$barHeightMedium} / 2)), 0px, -$barHeightMedium/2) rotate3d(0, 1, 0, 90deg);
+                }
             }
         }
     }
 
-    &__html {
-        top: 37px;
-
-        @media (min-width: 768px) {
-            top: 46px;
-        }
-    }
-
-    &__css {
-        top: 82px;
+    .graph__bar__text {
+        color: $secondary;
+        display: block;
+        font-weight: bold;
+        margin-right: 25px;
+        min-width: 75px;
+        width: 75px;
         
-        @media (min-width: 768px) {
-            top: 105px;
+        @media (min-width: $small) {
+            font-size: 1.2rem;
+            margin-right: 20px;
+            min-width: 80px;
+            width: 80px;
         }
-        
-    }
 
-    &__js {
-        top: 122px;
-
-        @media (min-width: 768px) {
-            top: 160px;
-        }
-    }
-
-    &__react {
-        top: 164px;
-
-        @media (min-width: 768px) {
-            top: 218px;
+        @media (min-width: $medium) {
+            font-size: 1.4rem;
+            height: 30px;
+            min-width: 105px;
+            width: 105px;
         }
     }
 
-    &__rn {
-        top: 206px;
-
-        @media (min-width: 768px) {
-            top: 275px;
-        }   
-    }
-
-    &__node {
-        top: 248px;
-
-        @media (min-width: 768px) {
-            top: 332px;
+    .graph__bar__text--rn {
+        @media (min-width: $medium) {
+            position: relative;
+            top: -8px;
         }
     }
 
-    &__next {
-        top: 288px;
+    .graph__bar__percentage {
+        color: $secondary;
+        display: none;
+        font-size: 1.2rem;
+        margin-left: 15px;
 
-        @media (min-width: 768px) {
-            top: 388px;
+        @media (min-width: $small) {
+            display: block;
+        }
+
+        @media (min-width: $medium) {
+            font-size: 1.4rem;
+            font-weight: bold;
         }
     }
+}
 
-    &__graphql {
-        top: 330px;
-
-        @media (min-width: 768px) {
-            top: 440px;
-        }
+@keyframes spin {
+    from {
+        transform: rotateX(120deg);
     }
-
-    &__aws {
-        top: 372px;
-
-        @media (min-width: 768px) {
-            top: 500px;
-        }
+    to {
+        transform: rotateX(160deg);
     }
 }

@@ -7,10 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portfolio | Scott Conway</title>
 
-    <link rel="stylesheet" href="build/index.css?v=1576024624763" />
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="build/index.css?v=1576201550372" />
 </head>
 
 <body id="body">
+    <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path class="shape-overlays__path"></path>
+        <path class="shape-overlays__path"></path>
+        <path class="shape-overlays__path"></path>
+    </svg>
+
     <!-- INTRO SECTION -->
     <section class="section intro" id="intro">
         <div id="waveTrigger"></div>
@@ -35,55 +44,333 @@
     <!-- ABOUT SECTION -->
     <section class="section about" id="about">
         <div id="graphTrigger"></div>
-        <div class="about__intro">
-            <h2 class="about__heading">About Me</h2>
-            <p class="about__content">
-                I am a full-stack Javascript developer from Boston, specializing in complex
-                and interactive user interfaces. A few of my technical skills include:
-            </p>
+
+        <div class="max-width-wrapper">
+            <div class="about__intro">
+                <h2 class="section__heading">About Me</h2>
+                <p class="about__content">
+                    I am a full-stack Javascript developer from Boston, specializing in interactive web and mobile
+                    applications. A
+                    few of my technical skills include:
+                </p>
+            </div>
+
+            <div class="about__wrapper">
+                <figure class="about__experience-graph" id="graph">
+                    <div class="graph__bar__wrapper" id="htmlBarWrapper">
+                        <span class="graph__bar__text">HTML</span>
+                        <div class="graph__bar" id="htmlBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="htmlPercentage">80</i>%
+                        </span>
+                    </div>
+                    <div class="graph__bar__wrapper" id="cssBarWrapper">
+                        <span class="graph__bar__text">CSS</span>
+                        <div class="graph__bar" id="cssBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="cssPercentage">90</i>%
+                        </span>
+                    </div>
+                    <div class="graph__bar__wrapper" id="jsBarWrapper">
+                        <span class="graph__bar__text">Javascript</span>
+                        <div class="graph__bar" id="jsBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="jsPercentage">90</i>%
+                        </span>
+                    </div>
+                    <div class="graph__bar__wrapper" id="reactBarWrapper">
+                        <span class="graph__bar__text">React</span>
+                        <div class="graph__bar" id="reactBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="reactPercentage">95</i>%
+                        </span>
+                    </div>
+                    <div class="graph__bar__wrapper" id="rnBarWrapper">
+                        <span class="graph__bar__text graph__bar__text--rn">React Native</span>
+                        <div class="graph__bar" id="rnBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="rnPercentage">90</i>%
+                        </span>
+                    </div>
+                    <div class="graph__bar__wrapper" id="nodeBarWrapper">
+                        <span class="graph__bar__text">NodeJS</span>
+                        <div class="graph__bar" id="nodeBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="nodePercentage">60</i>%
+                        </span>
+                    </div>
+                    <div class="graph__bar__wrapper" id="nextBarWrapper">
+                        <span class="graph__bar__text">NextJS</span>
+                        <div class="graph__bar" id="nextBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="nextPercentage">70</i>%
+                        </span>
+                    </div>
+                    <div class="graph__bar__wrapper" id="graphqlBarWrapper">
+                        <span class="graph__bar__text">GraphQL</span>
+                        <div class="graph__bar" id="graphqlBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="graphqlPercentage">60</i>%
+                        </span>
+                    </div>
+                    <div class="graph__bar__wrapper" id="typescriptBarWrapper">
+                        <span class="graph__bar__text">Typescript</span>
+                        <div class="graph__bar" id="typescriptBar">
+                            <span class="graph__bar__face graph__bar__face--top"></span>
+                            <span class="graph__bar__face graph__bar__face--bottom"></span>
+                            <span class="graph__bar__face graph__bar__face--front"></span>
+                            <span class="graph__bar__face graph__bar__face--back"></span>
+                            <span class="graph__bar__face graph__bar__face--left"></span>
+                        </div>
+                        <span class="graph__bar__percentage">
+                            <i id="typescriptPercentage">70</i>%
+                        </span>
+                    </div>
+                </figure>
+
+                <aside class="about__technologies">
+                    <h2 class="about__technologies__heading">Other Familiar Libraries and Methodologies</h2>
+                    <ul class="about__technologies__list">
+                        <li class="about__technology">Redux</li>
+                        <li class="about__technology">ThreeJS</li>
+                        <li class="about__technology">AWS Amplify</li>
+                        <li class="about__technology">AWS AppSync</li>
+                        <li class="about__technology">Terraform</li>
+                        <li class="about__technology">Jest</li>
+                        <li class="about__technology">Styled Components</li>
+                        <li class="about__technology">CypressJS</li>
+                        <li class="about__technology">Detox</li>
+                        <li class="about__technology">ExpressJS</li>
+                        <li class="about__technology">SocketIO</li>
+                        <li class="about__technology">SanityIO</li>
+                        <li class="about__technology">Moment</li>
+                        <li class="about__technology">Immer</li>
+                        <li class="about__technology">Service Workers</li>
+                        <li class="about__technology">ScrollMagic</li>
+                        <li class="about__technology">BEM</li>
+                        <li class="about__technology">SMACSS</li>
+                    </ul>
+                </aside>
+            </div>
         </div>
-        <figure class="about__experience-graph" id="graph"></figure>
     </section>
 
+    <!-- PROJECTS SECTION -->
     <section class="section projects" id="projects">
-        <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path class="shape-overlays__path"></path>
-            <path class="shape-overlays__path"></path>
-            <path class="shape-overlays__path"></path>
-        </svg>
+        <div class="max-width-wrapper">
+            <h2 class="section__heading">Projects</h2>
 
-        <article class="project" id="wit">
-            <img src="http://lorempixel.com/400/200/abstract/" alt="Wentworth Institute of Technology website redesign"
-                class="project__image" />
-            <div class="project__content">
-                <h2 class="project__title">Wentworth Institute of Technology</h2>
-                <a href="javascript:;" class="project__details-link">Details</a>
+            <div class="projects__wrapper">
+                <article class="project" id="wit">
+                    <div class="project__content">
+                        <h2 class="project__title">Wentworth Institute of Technology</h2>
+                        <p class="project__description">A website redesign for the Wentworth college in Boston, MA</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, Drupal, PHP</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="bbk">
+                    <div class="project__content">
+                        <h2 class="project__title">BB&K Law</h2>
+                        <p class="project__description">A website built from the ground up for the Best, Best, and
+                            Krieger Law firm</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, Kentico, C#</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="devsamples">
+                    <div class="project__content">
+                        <h2 class="project__title">Devsamples.com</h2>
+                        <p class="project__description">A side project to construct a website for finding common code
+                            samples.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, React, NextJS, ExpressJS</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="arc">
+                    <div class="project__content">
+                        <h2 class="project__title">Arc Advisory Group</h2>
+                        <p class="project__description">A website redesign and restructure for Arc Advisory Consultants.
+                        </p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, Drupal, PHP</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="transitTracker">
+                    <div class="project__content">
+                        <h2 class="project__title">Transit Tracker</h2>
+                        <p class="project__description">A mobile application for tracking the MBTA.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">React Native, iOS, Android</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="collaborationVisualizer">
+                    <div class="project__content">
+                        <h2 class="project__title">GitHub Collaboration Visualizer</h2>
+                        <p class="project__description">A visualization tool for GitHub contributions.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, ThreeJS</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="3dPortfolio">
+                    <div class="project__content">
+                        <h2 class="project__title">3D Portfolio</h2>
+                        <p class="project__description">A 3D implementation of my portfolio using ThreeJS.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, ThreeJS</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="tourDirector">
+                    <div class="project__content">
+                        <h2 class="project__title">EF Tour Director</h2>
+                        <p class="project__description">A mobile application for directors of EF educational tours.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">React Native, iOS, Android</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="traveler">
+                    <div class="project__content">
+                        <h2 class="project__title">EF Traveler</h2>
+                        <p class="project__description">A mobile application for travelers on EF educational tours.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">React Native, iOS, Android</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="worldTweets">
+                    <div class="project__content">
+                        <h2 class="project__title">World Tweets</h2>
+                        <p class="project__description">A visualizer for viewing tweets from around the world.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">React Native, iOS, Android</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="ticTacReact">
+                    <div class="project__content">
+                        <h2 class="project__title">Tic Tac React</h2>
+                        <p class="project__description">A real-time tic tac toe game.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, React, NodeJS, SocketIO</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="fatherPeyton">
+                    <div class="project__content">
+                        <h2 class="project__title">Father Peyton</h2>
+                        <p class="project__description">A website dedicated to the late priest Father Peyton.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, Drupal, PHP</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="3dSnake">
+                    <div class="project__content">
+                        <h2 class="project__title">3D Snake Game</h2>
+                        <p class="project__description">A 3D version of the popular snake game.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, ThreeJS</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
+
+                <article class="project" id="tree">
+                    <div class="project__content">
+                        <h2 class="project__title">Fractal Tree Animation</h2>
+                        <p class="project__description">A fractal tree animation that can be used as a page loader.</p>
+                        <h3 class="project__technologies__heading">Technologies</h3>
+                        <p class="project__technologies">HTML, CSS, Javascript, D3</p>
+                        <a href="javascript:;" class="project__details-link">Details</a>
+                    </div>
+                </article>
             </div>
-        </article>
 
-        <article class="project" id="zildjian">
-            <img src="http://lorempixel.com/400/200/abstract/" alt="Zildjian Cymbals website redesign"
-                class="project__image" />
-            <div class="project__content">
-                <h2 class="project__title">Zildjian Cymbals</h2>
-                <a href="javascript:;" class="project__details-link">Details</a>
-            </div>
-        </article>
+            <article class="project__details" id="projectDetails">
+                <a href="javascript:;" class="project__details__close" id="projectClose">
+                    <span class="hidden">Close project details</span>
+                </a>
 
-        <article class="project__details" id="projectDetails">
-            <a href="javascript:;" class="project__details__close" id="projectClose">
-                <span class="hidden">Close project details</span>
-            </a>
+                <div class="project__details__image-slider" id="projectImageSlider"></div>
 
-            <div class="project__details__content">
-                <h2 class="project__details__title" id="projectTitle"></h2>
-                <p class="project__details__description" id="projectDescription"></p>
-                <img src="" alt="project image" class="project__details__image" id="projectImage" />
-                <span class="project__details__year" id="projectYear"></span>
-                <p class="project__details__technologies" id="projectTechnologies"></p>
-            </div>
-        </article>
+                <!-- <img src="" alt="project image" class="project__details__image" id="projectImage" /> -->
+                <div class="project__details__content">
+                    <span class="project__details__year" id="projectYear"></span>
+                    <h2 class="project__details__title" id="projectTitle"></h2>
+                    <p class="project__details__description" id="projectDescription"></p>
+                    <p class="project__details__technologies" id="projectTechnologies"></p>
+                </div>
+            </article>
+        </div>
     </section>
+
     <section class="section"></section>
 
 

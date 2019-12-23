@@ -1,13 +1,16 @@
 @import "./variables.scss";
 
 .projects {
-    padding-top: 15px;
+    padding: 15px;
     position: relative;
 
+    @media (min-width: $medium) {
+        padding: 30px;
+    }
+
     &.animating {
-        .project {
-            transition: transform 500ms ease;
-            transform: translateX(-100vw);
+        .projects__wrapper {
+            animation: slide-left 750ms ease;
         }
     }
 
@@ -27,34 +30,99 @@
         }
     }
 
+    .projects__heading {
+        margin-bottom: 30px;
+        
+        @media (min-width: $medium) {
+            font-size: 3rem;
+            margin: 0 0 40px 0;
+        }
+    }
+
+    .projects__wrapper {
+        animation: slide 1000ms ease;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));  
+        grid-gap: 15px;
+        margin-bottom: 30px;
+        position: relative;
+        transition: transform 500ms ease;
+
+        @media (min-width: $medium) {
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: $large) {
+            margin-bottom: 45px;
+        }
+
+        @media (min-width: $xlarge) {
+            margin-bottom: 60px;
+        }
+    }
+
+
     .project {
-        border: 1px solid $secondary;
-        border-radius: 4px;
-        margin: 15px;
+        border: 1px solid $highlight;
+        cursor: pointer;
         overflow: hidden;
         position: relative;
+        transition: transform 250ms ease;
         z-index: 2;
-    }
-    
-    .project__image {
-        height: auto;
-        width: 100%;
-    }
-    
-    .project__content {
-        padding: 15px;
-    }
 
-    .project__title {
-        margin-bottom: 15px;
-        margin-top: 0;
-    }
+        &:hover {
+            transform: scale(1.05);
+        }
 
-    .project__details-link {
-        color: $primary;
-        display: block;
-        text-decoration: none;
-        text-align: right;
+        &__description {
+            font-size: 1.2rem;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        &__technologies {
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        &__technologies__heading {
+            font-size: 1rem;
+            color: $highlight;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        &__image {
+            height: auto;
+            width: 100%;
+        }
+        
+        &__content {
+            padding: 15px;
+        }
+    
+        &__title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 0;
+
+            @media (min-width: $medium) {
+                font-size: 1.8rem;
+            }
+        }
+    
+        &__details-link {
+            color: $highlight;
+            display: block;
+            text-decoration: none;
+            text-align: right;
+
+            @media (min-width: $medium) {
+                position: absolute;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
     }
 
     .project__details {
@@ -71,15 +139,51 @@
         z-index: 3;
     }
 
+    .project__details__image-slider {
+        min-height: 155px;
+        position: relative;
+
+        @media (min-width: $medium) {
+            min-height: 300px;
+        }
+
+        @media (min-width: $large) {
+            min-height: 350px;
+        }
+
+        @media (min-width: $xlarge) {
+            min-height: 400px;
+        }
+    }
+
+    .project__details__image {
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 500ms ease;
+
+        &.active {
+            transition: opacity 1000ms ease;
+            opacity: 1;
+        }
+    }
+
     .project__details__close {
         cursor: pointer;
+        height: 50px;
+        width: 50px;
         position: absolute;
-        right: 25px;
-        top: 25px;
+        right: 0;
+        top: 0;
+        z-index: 1;
 
         &::before,
         &::after {
             background-color: $secondary;
+            box-shadow: 0px 0px 4px 0px $primary;
             content: "";
             position: absolute;
             left: 50%;
@@ -99,37 +203,59 @@
         padding: 15px;
     }
 
-    .project__details__image {
-        width: 100%;
+    .project__details__title {
+        margin-top: 0;
     }
 
-    .shape-overlays {
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 3;
+    .project__details__description {
+        line-height: 1.4;
     }
-    
-    .shape-overlays.is-opened {
-        pointer-events: auto;
+}
+
+.shape-overlays {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.shape-overlays.is-opened {
+    pointer-events: auto;
+}
+
+.shape-overlays__path:nth-of-type(1) {
+    fill: $primary;
+}
+
+.shape-overlays__path:nth-of-type(2) {
+    fill: $highlight;
+}
+
+.shape-overlays__path:nth-of-type(3) {
+    fill: $primary;
+}
+
+.shape-overlays__path:nth-of-type(4) {
+    fill: $secondary;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(100vw);
     }
-    
-    .shape-overlays__path:nth-of-type(1) {
-        fill: $tertiary;
+    to {
+        transform: translateX(0);
     }
-    
-    .shape-overlays__path:nth-of-type(2) {
-        fill: $secondary;
+}
+
+@keyframes slide-left {
+    from {
+        transform: translateX(0);
     }
-    
-    .shape-overlays__path:nth-of-type(3) {
-        fill: $primary;
-    }
-    
-    .shape-overlays__path:nth-of-type(4) {
-        fill: $accent;
+    to {
+        transform: translateX(-100vw);
     }
 }

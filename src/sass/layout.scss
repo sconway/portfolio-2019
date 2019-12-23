@@ -1,6 +1,7 @@
 @import "./variables.scss";
 
 .section {
+    font-family: 'Rajdhani', sans-serif;
     min-height: 100vh;
     overflow: hidden;
 
@@ -9,11 +10,11 @@
     }
 
     &:nth-of-type(2) {
-        background-color: $accent;
+        background-color: $primary;
     }
 
     &:nth-of-type(3) {
-        background-color: $tertiary;
+        background-color: $primary;
     }
 
     &:nth-of-type(4) {
@@ -33,5 +34,24 @@
                 width: 100% !important;
             }
         }
+    }
+
+    &__heading {
+        font-size: 2rem;
+        margin: 10px 0 20px 0;
+
+        @media (min-width: $medium) {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+    }
+}
+
+.max-width-wrapper {
+    margin: 0 auto;
+    max-width: 1000px;
+
+    @media (min-width: $xlarge) {
+        max-width: $xlarge;
     }
 }

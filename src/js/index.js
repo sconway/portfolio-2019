@@ -2,6 +2,7 @@
     let group;
     let container;
     let controls;
+    let deviceWidth = window.innerWidth;
     let particlesData = [];
     let camera, scene, renderer;
     let positions, colors;
@@ -138,7 +139,7 @@
     }
 
     function pauseOffscreenAnimations() {
-        const options = { threshold: 0.4 };
+        const options = { threshold: 0.5 };
         const observer = new IntersectionObserver(handleAboutSectionOnScreen, options);
         const target = document.getElementById('intro');
 
@@ -174,6 +175,7 @@
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x121212);
         renderer.gammaInput = true;
         renderer.gammaOutput = true;
         container.appendChild(renderer.domElement);
@@ -202,7 +204,7 @@
         positions = new Float32Array(segments * 3);
         colors = new Float32Array(segments * 3);
         let pMaterial = new THREE.PointsMaterial({
-            color: 0xFFFFFF,
+            color: 0x3fcaa3,
             size: 3,
             blending: THREE.AdditiveBlending,
             transparent: true,
@@ -309,16 +311,18 @@
     }
 
     function render() {
-        group.rotation.y += (mouse.x / 100);
+        group.rotation.y += (mouse.x / (deviceWidth < 900 ? 500 : 100));
 
         renderer.render(scene, camera);
     }
 
     var resetScene = debounce(function () {
         document.querySelector('.intro canvas').remove();
+        // TweenMax.removeAll();
 
         controller = controller.destroy(true);
         controller = new ScrollMagic.Controller();
+        deviceWidth = window.innerWidth;
         group = null;
         container = null;
         controls = null;
@@ -337,6 +341,94 @@
         initScene();
     }, 250);
 
+    // ========================== ABOUT SECTION ==========================
+    function getBarWidth() {
+        if (deviceWidth > 1200) {
+            return 600;
+        } else if (deviceWidth > 900) {
+            return 400;
+        } else if (deviceWidth > 600) {
+            return 420;
+        } else if (deviceWidth > 330) {
+            return 250;
+        } else {
+            return 200;
+        }
+    }
+
+    function addTween(tween, offset, duration) {
+        new ScrollMagic.Scene({
+            triggerElement: "#graphTrigger",
+            duration: duration,
+            offset: offset
+        })
+            .setTween(tween)
+            .addTo(controller);
+    }
+
+    function createCounterTween(number, element) {
+        let counter = { var: 0 };
+        const el = document.getElementById(element);
+
+        return TweenMax.to(counter, 5, {
+            var: number,
+            onUpdate: function () {
+                el.innerHTML = Math.ceil(counter.var);
+            },
+            // ease: Circ.easeOut
+        });
+    }
+
+    function createGrowTween(item, width) {
+        return TweenMax.to(item, 1, {
+            rotationX: 140,
+            width: width
+        });
+    }
+
+    function createFadeTween(item) {
+        return TweenMax.to(item, 1, { opacity: 1 })
+    }
+
+    function addGraphTweens() {
+        // HTML
+        addTween(createGrowTween("#htmlBar", getBarWidth() * 0.8), 0, 200);
+        addTween(createCounterTween(80, "htmlPercentage"), 0, 200);
+        addTween(createFadeTween("#htmlBarWrapper"), -20, 100);
+        // CSS
+        addTween(createGrowTween("#cssBar", getBarWidth() * 0.9), 50, 200);
+        addTween(createCounterTween(90, "cssPercentage"), 50, 200);
+        addTween(createFadeTween("#cssBarWrapper"), 30, 100);
+        // JS
+        addTween(createGrowTween("#jsBar", getBarWidth() * 0.9), 100, 200);
+        addTween(createCounterTween(90, "jsPercentage"), 100, 200);
+        addTween(createFadeTween("#jsBarWrapper"), 80, 100);
+        // REACT
+        addTween(createGrowTween("#reactBar", getBarWidth() * 0.95), 140, 200);
+        addTween(createCounterTween(95, "reactPercentage"), 140, 200);
+        addTween(createFadeTween("#reactBarWrapper"), 120, 100);
+        // REACT NATIVE
+        addTween(createGrowTween("#rnBar", getBarWidth() * 0.9), 180, 200);
+        addTween(createCounterTween(90, "rnPercentage"), 180, 200);
+        addTween(createFadeTween("#rnBarWrapper"), 160, 100);
+        // NODE
+        addTween(createGrowTween("#nodeBar", getBarWidth() * 0.6), 210, 200);
+        addTween(createCounterTween(60, "nodePercentage"), 210, 200);
+        addTween(createFadeTween("#nodeBarWrapper"), 190, 100);
+        // NEXTJS
+        addTween(createGrowTween("#nextBar", getBarWidth() * 0.7), 240, 200);
+        addTween(createCounterTween(70, "nextPercentage"), 240, 200);
+        addTween(createFadeTween("#nextBarWrapper"), 220, 100);
+        // GRAPHQL
+        addTween(createGrowTween("#graphqlBar", getBarWidth() * 0.6), 270, 200);
+        addTween(createCounterTween(60, "graphqlPercentage"), 270, 200);
+        addTween(createFadeTween("#graphqlBarWrapper"), 240, 100);
+        // AWS
+        addTween(createGrowTween("#typescriptBar", getBarWidth() * 0.7), 300, 200);
+        addTween(createCounterTween(70, "typescriptPercentage"), 300, 200);
+        addTween(createFadeTween("#typescriptBarWrapper"), 280, 100);
+    }
+
     function initScene() {
         initWaveAnimation();
         initHandMoveAnimation();
@@ -349,6 +441,7 @@
         initRenderer();
         initParticles();
         initLines();
+        addGraphTweens();
     }
 
     initScene();

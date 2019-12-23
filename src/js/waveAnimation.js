@@ -2,7 +2,7 @@ class ShapeOverlays {
     constructor(elm) {
         this.elm = elm;
         this.path = elm.querySelectorAll('path');
-        this.numPoints = 55;
+        this.numPoints = 85;
         this.duration = 300;
         this.delayPointsArray = [];
         this.delayPointsMax = 300;
