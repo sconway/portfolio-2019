@@ -114,6 +114,7 @@
         &__details-link {
             color: $highlight;
             display: block;
+            margin: 0;
             text-decoration: none;
             text-align: right;
 
@@ -121,6 +122,20 @@
                 position: absolute;
                 bottom: 15px;
                 right: 15px;
+            }
+
+            &::after {
+                content: "\2192";
+                color: $highlight;
+                left: 3px;
+                position: relative;
+                transition: left 250ms ease;
+            }
+
+            &:hover {
+                &::after {
+                    left: 7px;
+                }
             }
         }
     }
@@ -172,9 +187,12 @@
     }
 
     .project__details__close {
+        background: none;
+        border: none;
         cursor: pointer;
         height: 50px;
         width: 50px;
+        outline: none;
         position: absolute;
         right: 0;
         top: 0;
@@ -205,10 +223,19 @@
 
     .project__details__title {
         margin-top: 0;
+
+        @media (min-width: $medium) {
+            font-size: 2.2rem;
+        }
     }
 
     .project__details__description {
         line-height: 1.4;
+        font-size: 1.2rem;
+
+        @media (min-width: $medium) {
+            font-size: 1.4rem;
+        }
     }
 }
 

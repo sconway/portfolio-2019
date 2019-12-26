@@ -68,6 +68,17 @@
         }
     }
 
+    &__technology__link {
+        color: $secondary;
+        cursor: pointer;
+        transition: color 250ms ease;
+        text-decoration: none;
+
+        &:hover {
+            color: $highlight;
+        }
+    }
+
     .about__experience-graph {
         height: 100%;
         margin: 0 auto;

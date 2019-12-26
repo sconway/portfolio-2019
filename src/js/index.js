@@ -157,6 +157,12 @@
         }
     }
 
+    function setIntroOpacity() {
+        if (window.devicePixelRatio < 2) {
+            document.querySelector(".intro canvas").style.opacity = 0.5;
+        }
+    }
+
     /**
      * ========================= ThreeJS functions ==========================
      */
@@ -442,6 +448,7 @@
         initParticles();
         initLines();
         addGraphTweens();
+        setIntroOpacity();
     }
 
     initScene();
