@@ -192,10 +192,23 @@
         });
     }
 
+    function handleWindowBlur() {
+        renderer.setAnimationLoop(null);
+    }
+
+    function handleWindowFocus() {
+        renderer.setAnimationLoop(() => {
+            update();
+            render();
+        });
+    }
+
     function initListeners() {
         window.addEventListener('mousemove', onMouseMove, false);
         window.addEventListener('resize', resetScene, false);
         window.addEventListener("load", pauseOffscreenAnimations, false);
+        window.addEventListener("blur", handleWindowBlur, false);
+        window.addEventListener("focus", handleWindowFocus, false);
     }
 
     function init() {
@@ -324,7 +337,6 @@
 
     var resetScene = debounce(function () {
         document.querySelector('.intro canvas').remove();
-        // TweenMax.removeAll();
 
         controller = controller.destroy(true);
         controller = new ScrollMagic.Controller();
@@ -345,6 +357,7 @@
         mouse = new THREE.Vector2();
 
         initScene();
+        pauseOffscreenAnimations();
     }, 250);
 
     // ========================== ABOUT SECTION ==========================

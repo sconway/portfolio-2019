@@ -26,8 +26,8 @@
                 "build/assets/bbk/bbk2.png",
                 "build/assets/bbk/bbk3.png",
             ],
-            "description": "This project involved creating a new front-end for Best, Best, and Krieger Attorneys and implementing it in the Kentico content management system. The focus of this project was creating a content-rich website that architected information in a manner that allowed users to easily find a lawyer for their needs.",
-            "description2": "This project went very smoothly right up until the deadline when the client announced that certain pages needed to be compliant with a few strict accessibilituy standards. Fortunately, most of this was built into the front-end templates from the start. After a brief accessibility audit and a few days of development, everything was ready to go.",
+            "description": "This project involved creating a new front-end for Best, Best, and Krieger Attorneys and implementing it in the Kentico content management system. The focus of this project was creating a content-rich website that architects information in a manner that allowed users to easily find a lawyer for their needs.",
+            "description2": "This project went very smoothly right up until the deadline when the client announced that certain pages needed to be compliant with a few strict accessibility standards. Fortunately, most of this was built into the front-end templates from the start. After a brief accessibility audit and a few days of development, everything was ready to go.",
             "technology": "HTML, CSS, Javascript, Kentico",
             "link": "https://www.bbklaw.com/",
             "role": "Converting designs into front-end templates and integrating them in the Kentico CMS."
@@ -40,9 +40,9 @@
                 "build/assets/devsamples/devsamples2.png",
                 "build/assets/devsamples/devsamples3.png",
             ],
-            "description": "Devsamples.com is a side project that I created to provide common code samples to other developers. I was working with React Native a lot during the creation of this project, and wanted a opportunity to explore some of the latest web technologies and methodologies like React hooks, code splitting, service workers, etc.",
-            "description2": "",
-            "technology": "HTML, CSS, Javascript, NextJS, ExpressJS",
+            "description": "Devsamples.com is a side project that I created to provide common code samples to other developers. I was working with React Native a lot during the creation of this project, and wanted a opportunity to switch back to web development to explore some of the latest web technologies and methodologies like React hooks, code splitting, service workers, etc.",
+            "description2": "This site is built in NextJS due to the SEO requirements, and also has a custom ExpressJS server to serve up static files like sitemaps, robots.txt, etc. The front-end is built in React, and makes use of the SanityIO CMS to provide the content for the site. One particular challenge was formatting and styling the code samples, which required a third party library and a few customizations to match the theme of the website.",
+            "technology": "HTML, CSS, Javascript, NextJS, ExpressJS, SanityIO, ScrollMagic",
             "link": "https://www.devsamples.com/",
             "role": "Design and Full-stack development of the entire site."
         },
@@ -55,7 +55,7 @@
                 "build/assets/arc/arc3.png",
             ],
             "description": "The website for Arc Advisory Group was rebuilt from the ground up for this project. This rebuild involved consolidating all of the different services that Arc offered into a smaller number of easy to navigate pages. These pages were created with subtle yet fun interactions and animations, while also being generic enough to be easily extended and repurposed to include any type of content.",
-            "description2": "",
+            "description2": "This client wanted a a very customizable CMS dashboard to allow them to build their own pages with existing components/widgets. This made for some interesting challenges, as we had to plan for and defend against a myriad of possibilities. To future-proof the front-end of this site, I set up a number of styles to enforce things like maximum heights/widths, overflow rules, margins/paddings etc. with the goal of preventing any content changes from breaking the layout of the site.",
             "technology": "HTML, CSS, Javascript, Kentico",
             "link": "https://www.arcweb.com/",
             "role": "Converting designs into front-end templates and integrating them in the Kentico CMS."
@@ -69,7 +69,7 @@
                 "build/assets/transit-tracker/tracker3.jpg",
             ],
             "description": "The MBTA Tracker Tracker project was a cross-platform React Native application to help users gain better insight into the status and location of MBTA vehicles. It was my first experience using React Native and was created to help gain familiarity with the framework.",
-            "description2": "",
+            "description2": "The API provided by the MBTA was very easy to work with and provided a large array of data about the various vehicles, stops, and predictions. The nature of public transportation makes predicting arrival times and delays very difficult. To help improve this, I used a combination of data points including space between vehicles, vehicle speed, and direction to generate more informed predictions.",
             "technology": "React Native, iOS, Android",
             "link": "https://apps.apple.com/us/app/mbta-transit-tracker/id1419205434/",
             "role": "Design, development, and deployment of the entire application."
@@ -167,26 +167,40 @@
                 "build/assets/fp/fp3.png",
                 "build/assets/fp/fp4.png",
             ],
-            "description": "This project Was created to honor the late priest Father Patrick Peyton of Holy Cross Family Ministeries. The website functions as a biography for Father Peyton, showing all of the key moments of his career and his service to the world.",
-            "description2": "The website consists of a number of customizable pages, structured as chapters of a book, that show the progression and acheivements of Father Peyton throughout his lifetime.",
+            "description": "This project was created to honor the late priest Father Patrick Peyton of Holy Cross Family Ministries. The website functions as a biography for Father Peyton, showing all of the key moments of his career and his service to the world.",
+            "description2": "The website consists of a number of customizable pages, structured as chapters of a book, that show the progression and achievements of Father Peyton throughout his lifetime.",
             "technology": "HTML, CSS, Javascript, Drupal",
             "link": "https://www.fatherpeyton.org/",
             "role": "Converting designs into front-end templates and integrating them in the Drupal CMS."
         },
         "3dSnake": {
-            "title": "HCFM Father Peyton",
-            "year": 2015,
+            "title": "3D Game of Snake",
+            "year": 2019,
             "images": [
-                "build/assets/fp/fp1.png",
-                "build/assets/fp/fp2.png",
-                "build/assets/fp/fp3.png",
-                "build/assets/fp/fp4.png",
+                "build/assets/snake/snake1.png",
+                "build/assets/snake/snake2.png",
+                "build/assets/snake/snake3.png",
+                "build/assets/snake/snake4.png",
             ],
-            "description": "This project Was created to honor the late priest Father Patrick Peyton of Holy Cross Family Ministeries. The website functions as a biography for Father Peyton, showing all of the key moments of his career and his service to the world.",
-            "description2": "The website consists of a number of customizable pages, structured as chapters of a book, that show the progression and acheivements of Father Peyton throughout his lifetime.",
-            "technology": "HTML, CSS, Javascript, Drupal",
-            "link": "https://www.fatherpeyton.org/",
-            "role": "Converting designs into front-end templates and integrating them in the Drupal CMS."
+            "description": "This game is a 3-Dimensional take on the popular game 'Snake', and adds an extra layer of difficulty, while also giving the player some more room to move.",
+            "description2": "One of the big challenges with this game was allowing the user to stay spatially oriented while they moved along the z-axis. To work around this, I added mouse controls that would allow the user to change the game view and their perspective.",
+            "technology": "HTML, CSS, Javascript, ThreeJS",
+            "link": "https://sconway.github.io/3d-snake/",
+            "role": "Design and development of entire application."
+        },
+        "tree": {
+            "title": "Fractal Tree Animation",
+            "year": 2016,
+            "images": [
+                "build/assets/tree/tree1.png",
+                "build/assets/tree/tree2.png",
+                "build/assets/tree/tree3.png",
+            ],
+            "description": "This page was created as a fun project to experiment with creating fractals in the D3 Javascript Library.",
+            "description2": "Once the main fractal animation was completed, I thought that this could make a great loading or page takeover animation. To accomplish this, I treated every branch of the fractal tree as a panel that could cover the screen, and animated the panels into place.",
+            "technology": "HTML, CSS, Javascript, D3JS",
+            "link": "https://sconway.github.io/loading-tree",
+            "role": "Design and development of entire application."
         },
     };
 
@@ -249,12 +263,13 @@
 
     function handleProjectClick(e) {
         const selectedProject = projectData[e.target.offsetParent.id];
-        console.log("selected project", e)
         const projectTitle = document.getElementById("projectTitle");
         const projectDescription = document.getElementById("projectDescription");
-        const projectImage = document.getElementById("projectImage");
+        const projectDescription2 = document.getElementById("projectDescription2");
+        const projectRole = document.getElementById("projectRole");
         const projectYear = document.getElementById("projectYear");
         const projectTechnologies = document.getElementById("projectTechnologies");
+        const projectLink = document.getElementById("projectLink");
 
         toggleAnimations();
 
@@ -263,9 +278,11 @@
 
             projectTitle.innerHTML = selectedProject.title;
             projectDescription.innerHTML = selectedProject.description;
-            // projectImage.src = selectedProject.imagePath;
+            projectDescription2.innerHTML = selectedProject.description2;
             projectYear.innerHTML = selectedProject.year;
+            projectRole.innerHTML = selectedProject.role;
             projectTechnologies.innerHTML = selectedProject.technology;
+            projectLink.href = selectedProject.link;
 
             animateSlider();
         }

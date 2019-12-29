@@ -2,6 +2,7 @@
 @import "./layout.scss";
 @import "./about.scss";
 @import "./projects.scss";
+@import "./contact.scss";
 @import "./utils.scss";
 
 html,
@@ -43,7 +44,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 15px;
     position: relative;
     left: 50%;
     min-width: 320px;
@@ -54,7 +54,7 @@ body {
         left: 50% !important;
         top: 50vh !important;
         position: fixed !important;
-        width: 100% !important;
+        width: calc(100% - 30px) !important;
     }
 }
 

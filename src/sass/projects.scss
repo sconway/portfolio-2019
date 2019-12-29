@@ -127,8 +127,9 @@
             &::after {
                 content: "\2192";
                 color: $highlight;
-                left: 3px;
                 position: relative;
+                left: 3px;
+                top: 1px;
                 transition: left 250ms ease;
             }
 
@@ -148,10 +149,40 @@
         height: 100%;
         width: 100%;
         opacity: 0;
-        overflow: hidden;
+        overflow: scroll;
         pointer-events: none;
         transition: opacity 500ms ease;
         z-index: 3;
+
+        &__header {
+            @extend .project__technologies__heading;
+
+            @media (min-width: $medium) {
+                font-size: 1.2rem;
+            }
+        }
+
+        &__footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        &__role, &__technologies {
+            @media (min-width: $medium) {
+                font-size: 1.2rem;
+            }
+        }
+
+        &__link {
+            @extend .project__details-link;
+
+            position: relative;
+            bottom: 0;
+            right: 0;
+            font-size: 1.2rem;
+        }
     }
 
     .project__details__image-slider {
@@ -172,6 +203,7 @@
     }
 
     .project__details__image {
+        background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
         height: 100%;
@@ -219,6 +251,10 @@
 
     .project__details__content {
         padding: 15px;
+
+        @media (min-width: $medium) {
+            padding: 30px;
+        }
     }
 
     .project__details__title {
