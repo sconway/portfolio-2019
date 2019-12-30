@@ -81,7 +81,7 @@
         }
 
         &__technologies {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             margin-top: 0;
         }
 
@@ -154,6 +154,19 @@
         transition: opacity 500ms ease;
         z-index: 3;
 
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background: $primary;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background: $highlight; 
+            border: 1px solid $primary;
+        }
+
         &__header {
             @extend .project__technologies__heading;
 
@@ -183,11 +196,23 @@
             right: 0;
             font-size: 1.2rem;
         }
+
+        &__wrapper {
+            &:first-of-type {
+                @media (min-width: $medium) {
+                    margin-right: 40px;
+                }
+            }
+        }
     }
 
     .project__details__image-slider {
         min-height: 155px;
         position: relative;
+
+        @media (min-width: $small) {
+            min-height: 200px;
+        }
 
         @media (min-width: $medium) {
             min-height: 300px;

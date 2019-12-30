@@ -196,19 +196,11 @@
         renderer.setAnimationLoop(null);
     }
 
-    function handleWindowFocus() {
-        renderer.setAnimationLoop(() => {
-            update();
-            render();
-        });
-    }
-
     function initListeners() {
         window.addEventListener('mousemove', onMouseMove, false);
         window.addEventListener('resize', resetScene, false);
         window.addEventListener("load", pauseOffscreenAnimations, false);
         window.addEventListener("blur", handleWindowBlur, false);
-        window.addEventListener("focus", handleWindowFocus, false);
     }
 
     function init() {
@@ -330,7 +322,7 @@
     }
 
     function render() {
-        group.rotation.y += (mouse.x / (deviceWidth < 900 ? 500 : 100));
+        group.rotation.y += (mouse.x / (deviceWidth < 900 ? 1000 : 100));
 
         renderer.render(scene, camera);
     }

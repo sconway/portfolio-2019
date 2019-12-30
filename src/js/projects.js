@@ -12,9 +12,9 @@
                 "build/assets/wit/wit2.png",
                 "build/assets/wit/wit3.png",
             ],
-            "description": "This project was a full scale re-design of the Wentworth Institute of Technology located in Boston, MA. This re-design involved working with members of the university to understand their goals and vision for the future of the school, as well as incorporating the existing branding and accessibility efforts.",
+            "description": "This project was a full scale website re-design for the Wentworth Institute of Technology located in Boston, MA. This re-design involved working with members of the university to understand their goals and vision for the future of the school, as well as incorporating the existing branding and accessibility efforts.",
             "description2": "Due to the scale of this project, I tried to create as many reusable components as possible to help speed up development and keep the user experience consistent. The designs had a number of similar components with slight differences, which made creating shared components a bit challenging. To solve this, I created various generic components with the common design elements that the other varying components could inherit from and extend.",
-            "technology": "Drupal, HTML, CSS, Javascript",
+            "technology": "HTML, CSS, Javascript, Drupal, PHP",
             "link": "https://wit.edu/",
             "role": "Converting designs into front-end templates and integrating them in the Drupal CMS."
         },
@@ -28,7 +28,7 @@
             ],
             "description": "This project involved creating a new front-end for Best, Best, and Krieger Attorneys and implementing it in the Kentico content management system. The focus of this project was creating a content-rich website that architects information in a manner that allowed users to easily find a lawyer for their needs.",
             "description2": "This project went very smoothly right up until the deadline when the client announced that certain pages needed to be compliant with a few strict accessibility standards. Fortunately, most of this was built into the front-end templates from the start. After a brief accessibility audit and a few days of development, everything was ready to go.",
-            "technology": "HTML, CSS, Javascript, Kentico",
+            "technology": "HTML, CSS, Javascript, Kentico, C#",
             "link": "https://www.bbklaw.com/",
             "role": "Converting designs into front-end templates and integrating them in the Kentico CMS."
         },
@@ -42,7 +42,7 @@
             ],
             "description": "Devsamples.com is a side project that I created to provide common code samples to other developers. I was working with React Native a lot during the creation of this project, and wanted a opportunity to switch back to web development to explore some of the latest web technologies and methodologies like React hooks, code splitting, service workers, etc.",
             "description2": "This site is built in NextJS due to the SEO requirements, and also has a custom ExpressJS server to serve up static files like sitemaps, robots.txt, etc. The front-end is built in React, and makes use of the SanityIO CMS to provide the content for the site. One particular challenge was formatting and styling the code samples, which required a third party library and a few customizations to match the theme of the website.",
-            "technology": "HTML, CSS, Javascript, NextJS, ExpressJS, SanityIO, ScrollMagic",
+            "technology": "HTML, CSS, Typescript, NextJS, ExpressJS, SanityIO, ScrollMagic",
             "link": "https://www.devsamples.com/",
             "role": "Design and Full-stack development of the entire site."
         },
@@ -56,11 +56,12 @@
             ],
             "description": "The website for Arc Advisory Group was rebuilt from the ground up for this project. This rebuild involved consolidating all of the different services that Arc offered into a smaller number of easy to navigate pages. These pages were created with subtle yet fun interactions and animations, while also being generic enough to be easily extended and repurposed to include any type of content.",
             "description2": "This client wanted a a very customizable CMS dashboard to allow them to build their own pages with existing components/widgets. This made for some interesting challenges, as we had to plan for and defend against a myriad of possibilities. To future-proof the front-end of this site, I set up a number of styles to enforce things like maximum heights/widths, overflow rules, margins/paddings etc. with the goal of preventing any content changes from breaking the layout of the site.",
-            "technology": "HTML, CSS, Javascript, Kentico",
+            "technology": "HTML, CSS, Javascript, Drupal, PHP",
             "link": "https://www.arcweb.com/",
-            "role": "Converting designs into front-end templates and integrating them in the Kentico CMS."
+            "role": "Converting designs into front-end templates and integrating them in the Drupal CMS."
         },
         "transitTracker": {
+            "backgroundZoom": "contain",
             "title": "Transit Tracker",
             "year": 2018,
             "images": [
@@ -83,50 +84,52 @@
                 "build/assets/collaboration-visualizer/collaboration-visualizer3.png",
             ],
             "description": "This project was inspired by the contribution graph on a Github user's profile. At the time, I was looking for an opportunity to get more experience with the ThreeJS library, and saw this as a great opportunity to create a more interactive version of this graph.",
-            "description2": "Using Github's API, a user can input the username of a Github account and view all of the commits that were made. This allows for a great view of a user's commitment activity contributions over time.",
+            "description2": "Using Github's API, a user can input the username of a Github account and view all of the commits that were made. This allows for a great view of a user's commitment activity and contributions over time.",
             "technology": "HTML, CSS, Javascript, ThreeJS",
             "link": "https://sconway.github.io/collaboration-visualizer/",
             "role": "Design, development, and deployment of the entire application."
         },
         "3dPortfolio": {
-            "title": "Github Collaboration Visualizer",
+            "title": "3D Portfolio",
             "year": 2017,
             "images": [
-                "build/assets/collaboration-visualizer/collaboration-visualizer1.png",
-                "build/assets/collaboration-visualizer/collaboration-visualizer2.png",
-                "build/assets/collaboration-visualizer/collaboration-visualizer3.png",
+                "build/assets/portfolio/portfolio1.png",
+                "build/assets/portfolio/portfolio2.png",
+                "build/assets/portfolio/portfolio3.png",
             ],
-            "description": "The initial portfolio that I created was a simple static site build with plain HTML, CSS, and Javascript. I had been playing around with WebGL at the time, and thought that a 3D version of this portfolio would be a fun project.",
+            "description": "The initial portfolio that I created was a simple static site built with plain HTML, CSS, and Javascript. I had been playing around with WebGL at the time, and thought that a 3D version of this portfolio would be a fun project.",
             "description2": "Aside from a few lines of HTML and CSS, the portfolio is built entirely with Javascript. Not the most accessible approach to building a website, but having all of the project source code consolodated to one file made for a surprisingly pleasant development experience.",
             "technology": "HTML, CSS, Javascript, ThreeJS",
             "link": "http://sconway.github.io/three-js/portfolio/dist/",
             "role": "Design, development, and deployment of the entire application."
         },
         "tourDirector": {
+            "backgroundZoom": "contain",
             "title": "EF Tour Director",
             "year": 2019,
             "images": [
-                "build/assets/collaboration-visualizer/collaboration-visualizer1.png",
-                "build/assets/collaboration-visualizer/collaboration-visualizer2.png",
-                "build/assets/collaboration-visualizer/collaboration-visualizer3.png",
+                "build/assets/td/td1.jpg",
+                "build/assets/td/td2.jpg",
+                "build/assets/td/td3.jpg",
             ],
             "description": "EF Tour Director is an application that I worked on with two other teammates as part of my current job. This application helps leaders of international and domestic tour groups manage their tours, and stay up to date with dynamic itineraries.",
             "description2": "This React Navigation app is optimized for both iOS and Android devices, and makes use of various offline-first technologies.",
-            "technology": "React Native, iOS, Android, AWS Appsync, AWS Amplify",
+            "technology": "React Native, iOS, Android, Typescript, AWS Appsync, AWS Amplify",
             "link": "https://apps.apple.com/us/app/tour-director/id1459686277",
             "role": "Development and deployment of application."
         },
-        "traveler": {
+        "traveller": {
+            "backgroundZoom": "contain",
             "title": "EF Traveller",
             "year": 2019,
             "images": [
-                "build/assets/traveller/traveller1.png",
-                "build/assets/traveller/traveller2.png",
-                "build/assets/traveller/traveller3.png",
+                "build/assets/traveller/traveller1.jpg",
+                "build/assets/traveller/traveller2.jpg",
+                "build/assets/traveller/traveller3.jpg",
             ],
             "description": "EF Traveler is an application that I worked on with two other teammates as part of my current job. This application helps travellers on our domestic and international tours stay up to date with changing itinerary items.",
             "description2": "This React Navigation app is optimized for both iOS and Android devices, and makes use of some custom authentication/autorization solutions.",
-            "technology": "React Native, iOS, Android",
+            "technology": "React Native, iOS, Android, Typescript",
             "link": "https://apps.apple.com/us/app/ef-traveler/id1458652828",
             "role": "Development and deployment of application."
         },
@@ -139,7 +142,7 @@
                 "build/assets/world-tweets/world-tweets3.png",
             ],
             "description": "After learning about Twitter's API, I was looking for a project that would be a good use case for it, and this seemed like the perfect candidate. This project listens for any incoming tweets with geo data, and plots them on a 3D globe for users to interact with.",
-            "description2": "This web application uses an ExpressJS server to create a web socket connection with the client and then listens to incoming tweets from the Twitter API. These tweets are then piped to the client side application and shown on an interactive globe.",
+            "description2": "This web application uses an ExpressJS server to create a web socket connection with the client and then listens to incoming tweets from the Twitter API. These tweets are then piped to the client side application and shown on an interactive globe. This application is hosted on the free tier of Heroku, so it may take a minute for the server to boot up.",
             "technology": "NodeJS, ExpressJS, SocketIO, HTML, CSS, Javascript, ThreeJS",
             "link": "http://world-tweets.herokuapp.com/",
             "role": "Design and development of entire application."
@@ -148,12 +151,12 @@
             "title": "Tic Tac React",
             "year": 2016,
             "images": [
-                "build/assets/arc/arc1.png",
-                "build/assets/arc/arc2.png",
-                "build/assets/arc/arc3.png",
+                "build/assets/tic-tac-toe/tic-tac-toe1.png",
+                "build/assets/tic-tac-toe/tic-tac-toe2.png",
+                "build/assets/tic-tac-toe/tic-tac-toe3.png",
             ],
             "description": "This project is a web based version of the timeless game, Tic Tac Toe. It was built at a time when I was first starting to work with the ReactJS framework, as well as NodeJS and websockets, and this project seemed like a great opportunity to combine these technologies.",
-            "description2": "The Node server opens a websocket connection with the connected client, and waits for another player to connect. When another client connects, the two clients are paired up and are able to play against each other in real time.",
+            "description2": "The Node server opens a websocket connection with the connected client, and waits for another player to connect. When another client connects, the two clients are paired up and are able to play against each other in real time. This application is hosted on the free tier of Heroku, so it may take a minute for the server to boot up.",
             "technology": "HTML, CSS, Javascript, React, NodeJS, SocketIO",
             "link": "http://tic-tac-react.herokuapp.com/",
             "role": "Design and development of entire application."
@@ -169,7 +172,7 @@
             ],
             "description": "This project was created to honor the late priest Father Patrick Peyton of Holy Cross Family Ministries. The website functions as a biography for Father Peyton, showing all of the key moments of his career and his service to the world.",
             "description2": "The website consists of a number of customizable pages, structured as chapters of a book, that show the progression and achievements of Father Peyton throughout his lifetime.",
-            "technology": "HTML, CSS, Javascript, Drupal",
+            "technology": "HTML, CSS, Javascript, Drupal, PHP",
             "link": "https://www.fatherpeyton.org/",
             "role": "Converting designs into front-end templates and integrating them in the Drupal CMS."
         },
@@ -192,12 +195,12 @@
             "title": "Fractal Tree Animation",
             "year": 2016,
             "images": [
-                "build/assets/tree/tree1.png",
                 "build/assets/tree/tree2.png",
+                "build/assets/tree/tree1.png",
                 "build/assets/tree/tree3.png",
             ],
             "description": "This page was created as a fun project to experiment with creating fractals in the D3 Javascript Library.",
-            "description2": "Once the main fractal animation was completed, I thought that this could make a great loading or page takeover animation. To accomplish this, I treated every branch of the fractal tree as a panel that could cover the screen, and animated the panels into place.",
+            "description2": "Once the main fractal animation was completed, I thought that this could make a great loading animation or full screen takeover. To accomplish this, I treated every branch of the fractal tree as a panel that could cover the screen, and animated the panels into place.",
             "technology": "HTML, CSS, Javascript, D3JS",
             "link": "https://sconway.github.io/loading-tree",
             "role": "Design and development of entire application."
@@ -211,7 +214,7 @@
         document.getElementById("projectClose").addEventListener("click", handleProjectCloseClick);
     }
 
-    function buildImageSlider(images) {
+    function buildImageSlider(images, zoom) {
         const imageWrapper = document.getElementById("projectImageSlider");
 
         for (let i = 0; i < images.length; i++) {
@@ -219,6 +222,7 @@
 
             image.classList.add("project__details__image");
             image.style.backgroundImage = `url(${images[i]})`;
+            image.style.backgroundSize = zoom || "100%";
 
             imageWrapper.appendChild(image);
         }
@@ -270,11 +274,12 @@
         const projectYear = document.getElementById("projectYear");
         const projectTechnologies = document.getElementById("projectTechnologies");
         const projectLink = document.getElementById("projectLink");
+        const bgImage = document.getElementById("projectImageSlider");
 
         toggleAnimations();
 
         if (selectedProject) {
-            buildImageSlider(selectedProject.images);
+            buildImageSlider(selectedProject.images, selectedProject.backgroundZoom);
 
             projectTitle.innerHTML = selectedProject.title;
             projectDescription.innerHTML = selectedProject.description;
