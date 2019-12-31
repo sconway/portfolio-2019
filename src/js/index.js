@@ -10,6 +10,7 @@
     let pointCloud;
     let particlePositions;
     let linesMesh;
+    let iterations = 0;
     let maxParticleCount = 200;
     let particleCount = 100;
     let mouse = new THREE.Vector2();
@@ -148,10 +149,7 @@
 
     function handleAboutSectionOnScreen(entries, observer) {
         if (entries[0].isIntersecting) {
-            renderer.setAnimationLoop(() => {
-                update();
-                render();
-            });
+            initRenderLoop();
         } else {
             renderer.setAnimationLoop(null)
         }
@@ -185,15 +183,29 @@
         renderer.gammaInput = true;
         renderer.gammaOutput = true;
         container.appendChild(renderer.domElement);
+    }
 
+    function initRenderLoop() {
         renderer.setAnimationLoop(() => {
             update();
             render();
         });
+
+        // if (deviceWidth >= 768)
+        //     setTimeout(handleWindowBlur, 100)
     }
 
     function handleWindowBlur() {
         renderer.setAnimationLoop(null);
+    }
+
+    function handleOrientation(event) {
+        var absolute = event.absolute;
+        var alpha = event.alpha;
+        var beta = event.beta;
+        var gamma = event.gamma;
+
+        alert("movement")
     }
 
     function initListeners() {
@@ -201,6 +213,7 @@
         window.addEventListener('resize', resetScene, false);
         window.addEventListener("load", pauseOffscreenAnimations, false);
         window.addEventListener("blur", handleWindowBlur, false);
+        window.addEventListener("deviceorientation", handleOrientation, true);
     }
 
     function init() {
@@ -319,10 +332,12 @@
         linesMesh.geometry.attributes.position.needsUpdate = true;
         linesMesh.geometry.attributes.color.needsUpdate = true;
         pointCloud.geometry.attributes.position.needsUpdate = true;
+
+        iterations++;
     }
 
     function render() {
-        group.rotation.y += (mouse.x / (deviceWidth < 900 ? 1000 : 100));
+        group.rotation.y += (deviceWidth < 900 ? 0.001 : (mouse.x / 200));
 
         renderer.render(scene, camera);
     }
@@ -333,6 +348,7 @@
         controller = controller.destroy(true);
         controller = new ScrollMagic.Controller();
         deviceWidth = window.innerWidth;
+        iterations = 0;
         group = null;
         container = null;
         controls = null;
@@ -450,6 +466,7 @@
         init();
         initListeners();
         initRenderer();
+        initRenderLoop();
         initParticles();
         initLines();
         addGraphTweens();
