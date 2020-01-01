@@ -186,13 +186,15 @@
     }
 
     function initRenderLoop() {
-        renderer.setAnimationLoop(() => {
+        if (deviceWidth >= 768) {
+            renderer.setAnimationLoop(() => {
+                update();
+                render();
+            });
+        } else {
             update();
             render();
-        });
-
-        // if (deviceWidth >= 768)
-        //     setTimeout(handleWindowBlur, 100)
+        }
     }
 
     function handleWindowBlur() {
@@ -213,7 +215,9 @@
         window.addEventListener('resize', resetScene, false);
         window.addEventListener("load", pauseOffscreenAnimations, false);
         window.addEventListener("blur", handleWindowBlur, false);
-        window.addEventListener("deviceorientation", handleOrientation, true);
+        if (window.DeviceMotionEvent) {
+            window.addEventListener("devicemotion", handleOrientation, false);
+        }
     }
 
     function init() {
@@ -466,9 +470,9 @@
         init();
         initListeners();
         initRenderer();
-        initRenderLoop();
         initParticles();
         initLines();
+        initRenderLoop();
         addGraphTweens();
         setIntroOpacity();
     }
