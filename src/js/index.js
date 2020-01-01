@@ -202,12 +202,7 @@
     }
 
     function handleOrientation(event) {
-        var absolute = event.absolute;
-        var alpha = event.alpha;
-        var beta = event.beta;
-        var gamma = event.gamma;
-
-        alert("movement")
+        group.rotation.y += event.alpha;
     }
 
     function initListeners() {
@@ -215,8 +210,8 @@
         window.addEventListener('resize', resetScene, false);
         window.addEventListener("load", pauseOffscreenAnimations, false);
         window.addEventListener("blur", handleWindowBlur, false);
-        if (window.DeviceMotionEvent) {
-            window.addEventListener("devicemotion", handleOrientation, false);
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", handleOrientation, false);
         }
     }
 
