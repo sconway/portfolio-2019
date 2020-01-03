@@ -208,11 +208,15 @@
     function initListeners() {
         window.addEventListener('mousemove', onMouseMove, false);
         window.addEventListener('resize', resetScene, false);
-        window.addEventListener("load", pauseOffscreenAnimations, false);
         window.addEventListener("blur", handleWindowBlur, false);
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", handleOrientation, false);
-        }
+        // let gyroscope = new Gyroscope({ frequency: 60 });
+
+        // gyroscope.addEventListener('reading', e => {
+        //     console.log("Angular velocity along the X-axis " + gyroscope.x);
+        //     console.log("Angular velocity along the Y-axis " + gyroscope.y);
+        //     console.log("Angular velocity along the Z-axis " + gyroscope.z);
+        // });
+        // gyroscope.start();
     }
 
     function init() {
@@ -472,5 +476,13 @@
         setIntroOpacity();
     }
 
-    initScene();
+    function handleLoad() {
+        const loadingScreen = document.getElementById("loadingScreen");
+        loadingScreen.classList.add("active");
+
+        initScene();
+        pauseOffscreenAnimations();
+    }
+
+    window.addEventListener("load", handleLoad, false);
 })();
