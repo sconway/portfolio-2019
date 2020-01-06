@@ -62,17 +62,29 @@
         }
     }
 
-
     .project {
         border: 1px solid $highlight;
         cursor: pointer;
+        opacity: 0;
         overflow: hidden;
         position: relative;
-        transition: transform 250ms ease;
+        transform: scale(0);
+        transition: transform 250ms ease, opacity 250ms ease;
         z-index: 2;
 
+        // @for $i from 1 through 12 {
+        //     &:nth-child(#{$i}) {
+        //         transition-delay: #{$i * 100}ms;
+        //     }
+        // }
+
         &:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) !important;
+        }
+        
+        &.active {
+            opacity: 1;
+            transform: scale(1);
         }
 
         &__description {

@@ -2,6 +2,7 @@
     let overlay;
     let scrollY;
     let interval;
+    const imageWrapper = document.getElementById("projectImageSlider");
 
     const projectData = {
         "wit": {
@@ -214,9 +215,24 @@
         document.getElementById("projectClose").addEventListener("click", handleProjectCloseClick);
     }
 
-    function buildImageSlider(images, zoom) {
-        const imageWrapper = document.getElementById("projectImageSlider");
+    function removeChildren(parent) {
+        while (parent.hasChildNodes()) {
+            parent.removeChild(parent.lastChild);
+        }
+    }
 
+    function preLoadImages(images) {
+        for (let i = 0; i < images.length; i++) {
+            const image = document.createElement("img");
+
+            image.classList.add("hidden");
+            image.src = images[i];
+
+            imageWrapper.appendChild(image);
+        }
+    }
+
+    function buildImageSlider(images, zoom) {
         for (let i = 0; i < images.length; i++) {
             const image = document.createElement("div");
 
@@ -225,15 +241,6 @@
             image.style.backgroundSize = zoom || "100%";
 
             imageWrapper.appendChild(image);
-        }
-    }
-
-    function removeImages() {
-        const images = document.querySelectorAll(".project__details__image");
-        const imageWrapper = document.getElementById("projectImageSlider");
-
-        for (let i = 0; i < images.length; i++) {
-            imageWrapper.removeChild(images[i]);
         }
     }
 
@@ -248,7 +255,6 @@
             images[(iterations - 1) % images.length].classList.remove("active");
             images[iterations % images.length].classList.add("active");
         }, 4000);
-
     }
 
     function toggleAnimations() {
@@ -274,11 +280,11 @@
         const projectYear = document.getElementById("projectYear");
         const projectTechnologies = document.getElementById("projectTechnologies");
         const projectLink = document.getElementById("projectLink");
-        const bgImage = document.getElementById("projectImageSlider");
 
         toggleAnimations();
 
         if (selectedProject) {
+            preLoadImages(selectedProject.images);
             buildImageSlider(selectedProject.images, selectedProject.backgroundZoom);
 
             projectTitle.innerHTML = selectedProject.title;
@@ -296,7 +302,7 @@
     function handleProjectCloseClick(e) {
         overlay.toggle();
         clearInterval(interval);
-        removeImages();
+        removeChildren(imageWrapper);
         document.getElementById("projects").classList.remove("active", "animating");
         document.body.style.position = '';
         window.scrollTo(0, scrollY);

@@ -10,11 +10,6 @@
         padding: 30px;
     }
 
-    &__intro {
-        // margin: 0 auto;
-        // max-width: 1000px;
-    }
-
     &__content {
         font-size: 1.2rem;
         line-height: 1.4;
@@ -37,9 +32,15 @@
 
     &__technologies {
         margin-bottom: 20px;
+        opacity: 0;
+        transition: opacity 500ms ease;
 
         @media (min-width: $medium) {
             padding-left: 20px;
+        }
+
+        &.active {
+            opacity: 1;
         }
     }
 

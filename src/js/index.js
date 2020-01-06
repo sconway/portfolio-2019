@@ -1,7 +1,6 @@
 (function () {
     let group;
     let container;
-    let controls;
     let deviceWidth = window.innerWidth;
     let particlesData = [];
     let camera, scene, renderer;
@@ -42,35 +41,12 @@
     };
 
     function initWaveAnimation() {
-        const images = [
-            "build/assets/wave-1.png",
-            "build/assets/wave-2.png",
-            "build/assets/wave-3.png",
-            "build/assets/wave-4.png",
-            "build/assets/wave-5.png",
-            "build/assets/wave-6.png",
-            "build/assets/wave-7.png",
-            "build/assets/wave-8.png",
-            "build/assets/wave-9.png",
-            "build/assets/wave-10.png",
-            "build/assets/wave-11.png",
-            "build/assets/wave-12.png",
-            "build/assets/wave-13.png",
-        ];
-        const obj = { curImg: 0 };
-        TweenMax.to(obj, 0.5,
-            {
-                curImg: images.length - 1, // animate propery curImg to number of images
-                roundProps: "curImg",	   // only integers so it can be used as an array index
-                repeat: 3,				   // repeat 3 times
-                immediateRender: true,	   // load first image automatically
-                ease: Linear.easeNone,	   // show every image the same ammount of time
-                onUpdate: function () {
-                    document.getElementById("introImage")
-                        .setAttribute("src", images[obj.curImg])
-                }
-            }
-        );
+        TweenMax.to("#introImage", 0.5, {
+            ease: Linear.easeNone,
+            rotation: 40,
+            repeat: 5,
+            yoyo: true
+        })
     }
 
     function initHandMoveAnimation() {
@@ -137,6 +113,15 @@
         addTextTween("#headingString5", -window.innerWidth, 300, 100);
         addTextTween("#headingString6", window.innerWidth, 500, 180);
         addTextTween("#headingString7", window.innerWidth, 800, -180);
+    }
+
+    function addClassToggle(trigger, offset, element, className) {
+        new ScrollMagic.Scene({
+            triggerElement: trigger,
+            offset: offset
+        })
+            .setClassToggle(element, className)
+            .addTo(controller);
     }
 
     function pauseOffscreenAnimations() {
@@ -464,6 +449,8 @@
         initHandMoveAnimation();
         initHeadingAnimation();
         initTextAnimation();
+        addClassToggle("#graphTrigger", 20, "#familiarTechnologies", "active");
+        addClassToggle("#projects", 0, ".project", "active");
         initIntroPinAnimation();
         initCamera();
         init();
