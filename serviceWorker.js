@@ -47,6 +47,9 @@ self.addEventListener('fetch', function (event) {
                         caches.open(CACHE_NAME)
                             .then(function (cache) {
                                 cache.put(event.request, responseToCache);
+                            })
+                            .catch((error) => {
+                                console.log("ERROR: ", error);
                             });
 
                         return response;

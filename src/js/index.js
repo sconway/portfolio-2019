@@ -450,7 +450,7 @@
         initHeadingAnimation();
         initTextAnimation();
         addClassToggle("#graphTrigger", 20, "#familiarTechnologies", "active");
-        addClassToggle("#projects", 0, ".project", "active");
+        addClassToggle("#projects", -window.innerHeight / 4, ".project", "active");
         initIntroPinAnimation();
         initCamera();
         init();

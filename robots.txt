@@ -1,0 +1,3 @@
+User-agent: * 
+Crawl-delay: 200
+Sitemap: https://www.sconway.me/sitemap.xml
