@@ -21,14 +21,15 @@
         minDistance: 250,
         limitConnections: false,
         maxConnections: 20,
-        particleCount: 500
+        particleCount: 500,
     };
     let controller = new ScrollMagic.Controller();
 
     function debounce(func, wait, immediate) {
         var timeout;
         return function () {
-            var context = this, args = arguments;
+            var context = this,
+                args = arguments;
             var later = function () {
                 timeout = null;
                 if (!immediate) func.apply(context, args);
@@ -38,37 +39,37 @@
             timeout = setTimeout(later, wait);
             if (callNow) func.apply(context, args);
         };
-    };
-
-    function initWaveAnimation() {
-        TweenMax.to("#introImage", 0.5, {
-            ease: Linear.easeNone,
-            rotation: 40,
-            repeat: 5,
-            yoyo: true
-        })
     }
 
-    function initHandMoveAnimation() {
-        const slide = TweenMax.to("#introImage", 1, {
-            x: -window.innerWidth,
-            opacity: 0
-        });
+    // function initWaveAnimation() {
+    //     TweenMax.to("#introImage", 0.5, {
+    //         ease: Linear.easeNone,
+    //         rotation: 40,
+    //         repeat: 5,
+    //         yoyo: true
+    //     })
+    // }
 
-        new ScrollMagic.Scene({
-            triggerElement: "#waveTrigger",
-            offset: window.innerHeight / 2 + 200,
-            duration: 400
-        })
-            .setTween(slide)
-            .addTo(controller);
-    }
+    //   function initHandMoveAnimation() {
+    //     const slide = TweenMax.to("#introImage", 1, {
+    //       x: -window.innerWidth,
+    //       opacity: 0,
+    //     });
+
+    //     new ScrollMagic.Scene({
+    //       triggerElement: "#waveTrigger",
+    //       offset: window.innerHeight / 2 + 200,
+    //       duration: 400,
+    //     })
+    //       .setTween(slide)
+    //       .addTo(controller);
+    //   }
 
     function initIntroPinAnimation() {
         new ScrollMagic.Scene({
             triggerElement: "#waveTrigger",
             offset: window.innerHeight / 2,
-            duration: 1000
+            duration: 1000,
         })
             .setPin("#introContent")
             .addTo(controller);
@@ -76,13 +77,13 @@
 
     function initHeadingAnimation() {
         const slide = TweenMax.to("#introHeading", 1, {
-            x: window.innerWidth
+            x: window.innerWidth,
         });
 
         new ScrollMagic.Scene({
             triggerElement: "#waveTrigger",
             offset: window.innerHeight / 2,
-            duration: 400
+            duration: 400,
         })
             .setTween(slide)
             .addTo(controller);
@@ -93,13 +94,13 @@
             x: x,
             y: y,
             opacity: 0,
-            rotation: rotation
+            rotation: rotation,
         });
 
         new ScrollMagic.Scene({
             triggerElement: "#waveTrigger",
             offset: window.innerHeight / 2 + 350,
-            duration: 600
+            duration: 600,
         })
             .setTween(charTween)
             .addTo(controller);
@@ -118,7 +119,7 @@
     function addClassToggle(trigger, offset, element, className) {
         new ScrollMagic.Scene({
             triggerElement: trigger,
-            offset: offset
+            offset: offset,
         })
             .setClassToggle(element, className)
             .addTo(controller);
@@ -126,8 +127,11 @@
 
     function pauseOffscreenAnimations() {
         const options = { threshold: 0.5 };
-        const observer = new IntersectionObserver(handleAboutSectionOnScreen, options);
-        const target = document.getElementById('intro');
+        const observer = new IntersectionObserver(
+            handleAboutSectionOnScreen,
+            options
+        );
+        const target = document.getElementById("intro");
 
         observer.observe(target);
     }
@@ -136,7 +140,7 @@
         if (entries[0].isIntersecting) {
             initRenderLoop();
         } else {
-            renderer.setAnimationLoop(null)
+            renderer.setAnimationLoop(null);
         }
     }
 
@@ -151,16 +155,21 @@
      */
     function onMouseMove(event) {
         mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     }
 
     function initCamera() {
-        camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 4000);
+        camera = new THREE.PerspectiveCamera(
+            45,
+            window.innerWidth / window.innerHeight,
+            1,
+            4000
+        );
         camera.position.z = 1750;
     }
 
     function initRenderer() {
-        container = document.getElementById('intro');
+        container = document.getElementById("intro");
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -191,8 +200,8 @@
     }
 
     function initListeners() {
-        window.addEventListener('mousemove', onMouseMove, false);
-        window.addEventListener('resize', resetScene, false);
+        window.addEventListener("mousemove", onMouseMove, false);
+        window.addEventListener("resize", resetScene, false);
         window.addEventListener("blur", handleWindowBlur, false);
         // let gyroscope = new Gyroscope({ frequency: 60 });
 
@@ -220,7 +229,7 @@
             size: 3,
             blending: THREE.AdditiveBlending,
             transparent: true,
-            sizeAttenuation: false
+            sizeAttenuation: false,
         });
         particles = new THREE.BufferGeometry();
         particlePositions = new Float32Array(maxParticleCount * 3);
@@ -234,12 +243,19 @@
             particlePositions[i * 3 + 2] = z;
             // add it to the geometry
             particlesData.push({
-                velocity: new THREE.Vector3(-1 + Math.random() * 2, -1 + Math.random() * 2, -1 + Math.random() * 2),
-                numConnections: 0
+                velocity: new THREE.Vector3(
+                    -1 + Math.random() * 2,
+                    -1 + Math.random() * 2,
+                    -1 + Math.random() * 2
+                ),
+                numConnections: 0,
             });
         }
         particles.setDrawRange(0, particleCount);
-        particles.addAttribute('position', new THREE.BufferAttribute(particlePositions, 3).setDynamic(true));
+        particles.addAttribute(
+            "position",
+            new THREE.BufferAttribute(particlePositions, 3).setDynamic(true)
+        );
         // create the particle system
         pointCloud = new THREE.Points(particles, pMaterial);
         group.add(pointCloud);
@@ -247,14 +263,20 @@
 
     function initLines() {
         let geometry = new THREE.BufferGeometry();
-        geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3).setDynamic(true));
-        geometry.addAttribute('color', new THREE.BufferAttribute(colors, 3).setDynamic(true));
+        geometry.addAttribute(
+            "position",
+            new THREE.BufferAttribute(positions, 3).setDynamic(true)
+        );
+        geometry.addAttribute(
+            "color",
+            new THREE.BufferAttribute(colors, 3).setDynamic(true)
+        );
         geometry.computeBoundingSphere();
         geometry.setDrawRange(0, 0);
         let material = new THREE.LineBasicMaterial({
             vertexColors: THREE.VertexColors,
             blending: THREE.AdditiveBlending,
-            transparent: true
+            transparent: true,
         });
         linesMesh = new THREE.LineSegments(geometry, material);
         group.add(linesMesh);
@@ -274,25 +296,43 @@
             particlePositions[i * 3 + 1] += particleData.velocity.y;
             particlePositions[i * 3 + 2] += particleData.velocity.z;
 
-            if (particlePositions[i * 3 + 1] < -rHalf || particlePositions[i * 3 + 1] > rHalf)
+            if (
+                particlePositions[i * 3 + 1] < -rHalf ||
+                particlePositions[i * 3 + 1] > rHalf
+            )
                 particleData.velocity.y = -particleData.velocity.y;
-            if (particlePositions[i * 3] < -rHalf || particlePositions[i * 3] > rHalf)
+            if (
+                particlePositions[i * 3] < -rHalf ||
+                particlePositions[i * 3] > rHalf
+            )
                 particleData.velocity.x = -particleData.velocity.x;
-            if (particlePositions[i * 3 + 2] < -rHalf || particlePositions[i * 3 + 2] > rHalf)
+            if (
+                particlePositions[i * 3 + 2] < -rHalf ||
+                particlePositions[i * 3 + 2] > rHalf
+            )
                 particleData.velocity.z = -particleData.velocity.z;
-            if (effectController.limitConnections && particleData.numConnections >= effectController.maxConnections)
+            if (
+                effectController.limitConnections &&
+                particleData.numConnections >= effectController.maxConnections
+            )
                 continue;
 
             // Check collision
             for (let j = i + 1; j < particleCount; j++) {
                 let particleDataB = particlesData[j];
 
-                if (effectController.limitConnections && particleDataB.numConnections >= effectController.maxConnections)
+                if (
+                    effectController.limitConnections &&
+                    particleDataB.numConnections >=
+                        effectController.maxConnections
+                )
                     continue;
 
                 let dx = particlePositions[i * 3] - particlePositions[j * 3];
-                let dy = particlePositions[i * 3 + 1] - particlePositions[j * 3 + 1];
-                let dz = particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
+                let dy =
+                    particlePositions[i * 3 + 1] - particlePositions[j * 3 + 1];
+                let dz =
+                    particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
                 let dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
                 if (dist < effectController.minDistance) {
@@ -325,13 +365,13 @@
     }
 
     function render() {
-        group.rotation.y += (deviceWidth < 900 ? 0.001 : (mouse.x / 200));
+        group.rotation.y += deviceWidth < 900 ? 0.001 : mouse.x / 200;
 
         renderer.render(scene, camera);
     }
 
     var resetScene = debounce(function () {
-        document.querySelector('.intro canvas').remove();
+        document.querySelector(".intro canvas").remove();
 
         controller = controller.destroy(true);
         controller = new ScrollMagic.Controller();
@@ -375,7 +415,7 @@
         new ScrollMagic.Scene({
             triggerElement: "#graphTrigger",
             duration: duration,
-            offset: offset
+            offset: offset,
         })
             .setTween(tween)
             .addTo(controller);
@@ -397,12 +437,12 @@
     function createGrowTween(item, width) {
         return TweenMax.to(item, 1, {
             rotationX: 140,
-            width: width
+            width: width,
         });
     }
 
     function createFadeTween(item) {
-        return TweenMax.to(item, 1, { opacity: 1 })
+        return TweenMax.to(item, 1, { opacity: 1 });
     }
 
     function addGraphTweens() {
@@ -439,18 +479,27 @@
         addTween(createCounterTween(60, "graphqlPercentage"), 270, 200);
         addTween(createFadeTween("#graphqlBarWrapper"), 240, 100);
         // AWS
-        addTween(createGrowTween("#typescriptBar", getBarWidth() * 0.7), 300, 200);
+        addTween(
+            createGrowTween("#typescriptBar", getBarWidth() * 0.7),
+            300,
+            200
+        );
         addTween(createCounterTween(70, "typescriptPercentage"), 300, 200);
         addTween(createFadeTween("#typescriptBarWrapper"), 280, 100);
     }
 
     function initScene() {
-        initWaveAnimation();
-        initHandMoveAnimation();
+        // initWaveAnimation();
+        // initHandMoveAnimation();
         initHeadingAnimation();
         initTextAnimation();
         addClassToggle("#graphTrigger", 20, "#familiarTechnologies", "active");
-        addClassToggle("#projects", -window.innerHeight / 4, ".project", "active");
+        addClassToggle(
+            "#projects",
+            -window.innerHeight / 4,
+            ".project",
+            "active"
+        );
         initIntroPinAnimation();
         initCamera();
         init();

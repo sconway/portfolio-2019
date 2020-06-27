@@ -13,12 +13,20 @@ body {
     height: 100%;
     width: 100%;
 
+    // Smooth text edges
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
     &.fixed {
         position: fixed;
     }
 
-    h1, h2, h3, h4 {
-        font-family: 'Bebas Neue', cursive;
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: "Bebas Neue", cursive;
         letter-spacing: 1px;
     }
 
@@ -35,7 +43,7 @@ body {
     }
 
     &::-webkit-scrollbar-thumb {
-        background: $highlight; 
+        background: $highlight;
         border: 1px solid $primary;
     }
 }
@@ -67,17 +75,18 @@ body {
     }
 }
 
-.intro__heading {
-    @media (min-width: 768px) {
-        font-size: 2rem;
-        line-height: 1;
-    }
-}
-
+.intro__heading,
 .intro__sub-heading {
     @media (min-width: 768px) {
-        font-size: 2rem;
+        font-size: 2.5rem;
         line-height: 1;
+        letter-spacing: 2px;
+        margin: 2rem 0;
+    }
+
+    @media (min-width: 1024px) {
+        font-size: 3.5rem;
+        letter-spacing: 3px;
     }
 }
 
