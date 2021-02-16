@@ -109,23 +109,40 @@
             role:
                 "Design, development, and deployment of the entire application.",
         },
-        "3dPortfolio": {
-            title: "3D Portfolio",
-            year: 2017,
+        covidTracker: {
+            title: "COVID19 Tracker and Visualizer",
+            year: 2020,
             images: [
-                "build/assets/portfolio/portfolio1.png",
-                "build/assets/portfolio/portfolio2.png",
-                "build/assets/portfolio/portfolio3.png",
+                "build/assets/covid-tracker/covid-tracker-country.png",
+                "build/assets/covid-tracker/covid-tracker-home.png",
+                "build/assets/covid-tracker/covid-tracker-hover.png"
             ],
             description:
-                "The initial portfolio that I created was a simple static site built with plain HTML, CSS, and Javascript. I had been playing around with WebGL at the time, and thought that a 3D version of this portfolio would be a fun project.",
+                "The COVID19 tracker project was built to help me gain experience with the Svelte Javascript framework, as well as to provide a means for seeing how many cases of the novel corona virus different countries were facing.",
             description2:
-                "Aside from a few lines of HTML and CSS, the portfolio is built entirely with Javascript. Not the most accessible approach to building a website, but having all of the project source code consolodated to one file made for a surprisingly pleasant development experience.",
-            technology: "HTML, CSS, Javascript, ThreeJS",
-            link: "http://sconway.github.io/three-js/portfolio/dist/",
+                "This project overlays an interactive map of the world's countries on a three dimensional globe, and displays data about each country as it is hovered over. The data is provided by an API that aggregates virus information from various trusted sources.",
+            technology: "HTML, CSS, Javascript, SvelteJS, ThreeJS, D3JS",
+            link: "https://sconway.github.io/collaboration-visualizer/",
             role:
-                "Design, development, and deployment of the entire application.",
+                " Development, deployment, and partial design.",
         },
+        // "3dPortfolio": {
+        //     title: "3D Portfolio",
+        //     year: 2017,
+        //     images: [
+        //         "build/assets/portfolio/portfolio1.png",
+        //         "build/assets/portfolio/portfolio2.png",
+        //         "build/assets/portfolio/portfolio3.png",
+        //     ],
+        //     description:
+        //         "The initial portfolio that I created was a simple static site built with plain HTML, CSS, and Javascript. I had been playing around with WebGL at the time, and thought that a 3D version of this portfolio would be a fun project.",
+        //     description2:
+        //         "Aside from a few lines of HTML and CSS, the portfolio is built entirely with Javascript. Not the most accessible approach to building a website, but having all of the project source code consolodated to one file made for a surprisingly pleasant development experience.",
+        //     technology: "HTML, CSS, Javascript, ThreeJS",
+        //     link: "http://sconway.github.io/three-js/portfolio/dist/",
+        //     role:
+        //         "Design, development, and deployment of the entire application.",
+        // },
         tourDirector: {
             backgroundZoom: "contain",
             title: "EF Tour Director",
