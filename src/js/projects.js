@@ -122,7 +122,7 @@
             description2:
                 "This project overlays an interactive map of the world's countries on a three dimensional globe, and displays data about each country as it is hovered over. The data is provided by an API that aggregates virus information from various trusted sources.",
             technology: "HTML, CSS, Javascript, SvelteJS, ThreeJS, D3JS",
-            link: "https://sconway.github.io/collaboration-visualizer/",
+            link: "https://sconway.github.io/covid-tracker/",
             role:
                 " Development, deployment, and partial design.",
         },
