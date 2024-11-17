@@ -1,4 +1,6 @@
-class ShapeOverlays {
+import { ease } from "./easings";
+
+export class ShapeOverlays {
     constructor(elm) {
         this.elm = elm;
         this.path = elm.querySelectorAll('path');
