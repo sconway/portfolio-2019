@@ -181,19 +181,19 @@ const projectData = {
     },
     worldTweets: {
         title: "World Tweets",
-        year: 2016,
+        year: 2024,
         images: [
             "assets/world-tweets/world-tweets1.png",
             "assets/world-tweets/world-tweets2.png",
             "assets/world-tweets/world-tweets3.png",
         ],
         description:
-            "After learning about Twitter's API, I was looking for a project that would be a good use case for it, and this seemed like the perfect candidate. This project listens for any incoming tweets with geo data, and plots them on a 3D globe for users to interact with.",
+            "This project started as a React application that was fed a stream of tweets from an Express server using web sockets. After Twitter was purchased by an eccentric billionaire, the price of using the Twiter API went up significantly, causing me to shift my approach.",
         description2:
-            "This web application uses an ExpressJS server to create a web socket connection with the client and then listens to incoming tweets from the Twitter API. These tweets are then piped to the client side application and shown on an interactive globe. This application is hosted on the free tier of Heroku, so it may take a minute for the server to boot up.",
+            "Instead of relying on the Twitter API, I used an LLM to generate some example tweets which are randomly plotted on the globe. The color of the plotted point corresponds to the sentiment of the tweet, and the tweet details can be seen by hovering on the point. Countries can be clicked to view additional information about the country.",
         technology:
             "NodeJS, ExpressJS, SocketIO, HTML, CSS, Javascript, ThreeJS",
-        link: "http://world-tweets.herokuapp.com/",
+        link: "https://sconway.github.io/global-tweets/build/",
         role: "Design and development of entire application.",
     },
     fatherPeyton: {
