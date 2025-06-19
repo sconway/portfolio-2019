@@ -6,6 +6,24 @@ let interval;
 const imageWrapper = document.getElementById("projectImageSlider");
 
 const projectData = {
+    madeWithAI: {
+        title: "Made With AI",
+        year: 2025,
+        images: [
+            "assets/madeWithAI/decorait.png",
+            "assets/madeWithAI/snake.png",
+            "assets/madeWithAI/tanks.png",
+            "assets/madeWithAI/textTransform.png",
+        ],
+        description:
+            "This project is a collection of projects made exclusively by prompting AI systems. My goal was gain experience communicating my ideas into a format that AI systems can execute. I also wanted to explore the capabilities of AI systems and see how far they can take a project using only natural language prompts.",
+        description2:
+            "The main restriction that I set for myself was that the project had to be made using only natural language prompts. This led to many interesting problems that could have been solved by a hands on approach, but sticking to the goal of this project helped me gain valuable experience using AI to debug AI written code.",
+        technology: "Cusor, LLMs, HTML, CSS, Javascript, React, NodeJS, ExpressJS",
+        link: "https://sconway.github.io/made-with-ai/",
+        role:
+            "End to end development and deployment of all projects.",
+    },
     wit: {
         title: "Wentworth Institute of Technology",
         year: 2016,
@@ -136,7 +154,7 @@ const projectData = {
             "assets/portfolio/portfolio3.png",
         ],
         description:
-            "The initial portfolio that I created was a simple static site built with plain HTML, CSS, and Javascript. I had been playing around with WebGL at the time, and thought that a 3D version of this portfolio would be a fun project.",
+            "The initial portfolio (this site) that I created was a simple static site built with plain HTML, CSS, and Javascript. I had been playing around with WebGL at the time, and thought that a 3D version of this portfolio would be a fun project.",
         description2:
             "Aside from a few lines of HTML and CSS, the portfolio is built entirely with Javascript. Not the most accessible approach to building a website, but having all of the project source code consolodated to one file made for a surprisingly pleasant development experience.",
         technology: "HTML, CSS, Javascript, ThreeJS",
