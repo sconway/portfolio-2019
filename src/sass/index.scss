@@ -121,12 +121,17 @@ body {
     border: 4px solid $secondary;
     border-radius: 0;
     cursor: pointer;
+    display: none;
     position: fixed;
     right: 40px;
     top: 21px;
     height: 30px;
     width: 60px;
     z-index: 3;
+
+    @media (min-width: 1025px) {
+        display: block;
+    }
 
     &.active {
         .switch-toggle {

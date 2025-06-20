@@ -16,9 +16,9 @@ const projectData = {
             "assets/madeWithAI/textTransform.png",
         ],
         description:
-            "This project is a collection of projects made exclusively by prompting AI systems. My goal was gain experience communicating my ideas into a format that AI systems can execute. I also wanted to explore the capabilities of AI systems and see how far they can take a project using only natural language prompts.",
+            "This project is a collection of projects made without writing a single line of code by hand (or keyboard). My goal was gain experience communicating my ideas into an optimal format for AI systems to execute. I also wanted to explore the capabilities of AI systems and see how far they can take a project using only natural language prompts.",
         description2:
-            "The main restriction that I set for myself was that the project had to be made using only natural language prompts. This led to many interesting problems that could have been solved by a hands on approach, but sticking to the goal of this project helped me gain valuable experience using AI to debug AI written code.",
+            "The main restriction that I set for myself was that the projects had to be made using only natural language prompts. This led to many interesting problems that could have been solved by a more hands on approach, but sticking to the goal of this project helped me gain valuable experience using AI to debug AI written code.",
         technology: "Cusor, LLMs, HTML, CSS, Javascript, React, NodeJS, ExpressJS",
         link: "https://sconway.github.io/made-with-ai/",
         role:
