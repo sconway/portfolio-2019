@@ -154,9 +154,9 @@ const projectData = {
             "assets/portfolio/portfolio3.png",
         ],
         description:
-            "The initial portfolio (this site) that I created was a simple static site built with plain HTML, CSS, and Javascript. I had been playing around with WebGL at the time, and thought that a 3D version of this portfolio would be a fun project.",
+            "The initial portfolio (the website we are on right now) that I created was a simple static site built with plain HTML, CSS, and Javascript. I had been playing around with WebGL at the time, and thought that a 3D version of this portfolio would be a fun project.",
         description2:
-            "Aside from a few lines of HTML and CSS, the portfolio is built entirely with Javascript. Not the most accessible approach to building a website, but having all of the project source code consolodated to one file made for a surprisingly pleasant development experience.",
+            "Aside from a few lines of HTML and CSS, the portfolio is built entirely with Javascript. It's not the most accessible approach to building a website, but having all of the project source code consolodated to one file made for a surprisingly pleasant development experience.",
         technology: "HTML, CSS, Javascript, ThreeJS",
         link: "https://sconway.github.io/scrollable-3d-portfolio/dist/",
         role:
