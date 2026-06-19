@@ -473,7 +473,7 @@ function add2DButtonListener() {
         switchButton.classList.add("active")
 
         setTimeout(() => {
-            window.location.href = "https://sconway.github.io/scrollable-3d-portfolio/dist/"
+            window.location.href = "https://sconway.github.io/scrollable-3d-portfolio/"
         }, 350)
     })
 }

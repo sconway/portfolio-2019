@@ -175,7 +175,7 @@ const projectData = {
         description2:
             "Aside from a few lines of HTML and CSS, the portfolio is built entirely with Javascript. It's not the most accessible approach to building a website, but having all of the project source code consolodated to one file made for a surprisingly pleasant development experience.",
         technology: "HTML, CSS, Javascript, ThreeJS",
-        link: "https://sconway.github.io/scrollable-3d-portfolio/dist/",
+        link: "https://sconway.github.io/scrollable-3d-portfolio/",
         role:
             "Design, development, and deployment of the entire application.",
     },
