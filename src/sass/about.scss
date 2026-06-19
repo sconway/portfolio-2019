@@ -6,38 +6,63 @@
     z-index: 1;
 
     @media (min-width: $medium) {
-        min-height: initial;
         padding: 30px;
+        padding-bottom: 80px;
+    }
+
+    .section__heading::before {
+        @include section-label;
+        content: "Profile";
+    }
+
+    &__intro {
+        @include hud-panel;
+        @include hud-corners;
+
+        box-sizing: border-box;
+        margin-bottom: 24px;
+        padding: 24px;
+        position: relative;
+        width: 100%;
     }
 
     &__content {
-        font-size: 1.2rem;
-        line-height: 1.4;
-        
+        color: $text-muted;
+        font-size: 1.15rem;
+        line-height: 1.55;
+
         @media (min-width: $small) {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
         }
 
         @media (min-width: $medium) {
-            font-size: 1.8rem;
+            font-size: 1.35rem;
         }
     }
 
     &__wrapper {
+        width: 100%;
+
         @media (min-width: $large) {
+            align-items: start;
             display: grid;
-            grid-template-columns: 65% 35%;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 24px;
         }
     }
 
     &__technologies {
+        @include hud-panel;
+        @include hud-corners(14px);
+
+        box-sizing: border-box;
         margin-bottom: 20px;
         opacity: 0;
+        overflow: visible;
+        padding: 20px 24px 28px;
+        position: relative;
         transition: opacity 500ms ease;
-
-        @media (min-width: $medium) {
-            padding-left: 20px;
-        }
+        width: 100%;
 
         &.active {
             opacity: 1;
@@ -45,55 +70,68 @@
     }
 
     &__technologies__heading {
-        font-size: 1.4rem;
+        color: $highlight;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
 
         @media (min-width: $medium) {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
         }
     }
 
     &__technologies__list {
         display: flex;
         flex-wrap: wrap;
+        gap: 8px;
         list-style: none;
         padding: 0;
     }
 
     &__technology {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        padding-right: 15px;
-
-        @media (min-width: $medium) {
-            font-size: 1.6rem;
-        }
+        margin: 0;
     }
 
     &__technology__link {
-        color: $secondary;
-        cursor: pointer;
-        transition: color 250ms ease;
+        border: 1px solid rgba(56, 232, 255, 0.35);
+        background: rgba(56, 232, 255, 0.06);
+        color: #bdeefc;
+        display: inline-block;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        padding: 4px 10px;
         text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+
+        @media (min-width: $medium) {
+            font-size: 1rem;
+        }
 
         &:hover {
-            color: $highlight;
+            background: rgba(0, 249, 170, 0.12);
+            border-color: rgba(0, 249, 170, 0.55);
+            box-shadow: 0 0 12px rgba(0, 249, 170, 0.25);
+            color: $text;
         }
     }
 
     .about__experience-graph {
-        height: 100%;
-        margin: 0 auto;
-        max-width: 400px;
-        padding: 30px 0;
-        position: relative;
+        @include hud-panel;
+        @include hud-corners;
 
-        @media (min-width: $medium) {
-            max-width: 600px;
-        }
+        box-sizing: border-box;
+        height: auto;
+        margin: 0 0 24px;
+        max-width: none;
+        overflow: visible;
+        padding: 30px 24px 36px;
+        position: relative;
+        width: 100%;
 
         @media (min-width: $large) {
-            max-width: initial;
-            margin: 0;
+            margin-bottom: 0;
         }
     }
 
@@ -102,7 +140,12 @@
         display: flex;
         margin-bottom: 20px;
         opacity: 0;
+        overflow: visible;
         position: relative;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
 
         @media (min-width: $small) {
             margin-bottom: 25px;
@@ -128,13 +171,12 @@
         }
 
         &__face {
-            background: rgba(12,12,12,0.4);
-            border: 1px solid $highlight;
+            background: rgba(4, 7, 11, 0.6);
+            border: 1px solid rgba(0, 249, 170, 0.55);
             display: block;
             height: 100%;
             width: 100%;
             position: absolute;
-            // transform-origin: 15px center;
 
             &--top {
                 transform: translate3d(0px, -$barHeightSmall/2, -$barHeightSmall/2) rotate3d(1, 0, 0, 90deg);
@@ -169,29 +211,20 @@
                     height: $barHeightMedium;
                     width: $barHeightMedium;
                 }
-                // transform: translate3d(0px, 25px, -25px) rotate3d(2, 0, 0, 45deg);
             }
-            
+
             &--left {
-                height: $barHeightSmall;
-                width: $barHeightSmall;
                 transform: translate3d(-$barHeightSmall/2, 0px, -$barHeightSmall/2) rotate3d(0, 1, 0, 90deg);
 
                 @media (min-width: $small) {
-                    height: $barHeightMedium;
-                    width: $barHeightMedium;
                     transform: translate3d(-$barHeightMedium/2, 0px, -$barHeightMedium/2) rotate3d(0, 1, 0, 90deg);
                 }
             }
 
             &--right {
-                height: $barHeightSmall;
-                width: $barHeightSmall;
                 transform: translate3d(calc(100% - (#{$barHeightSmall} / 2)), 0px, -$barHeightSmall/2) rotate3d(0, 1, 0, 90deg);
 
                 @media (min-width: $small) {
-                    height: $barHeightMedium;
-                    width: $barHeightMedium;
                     transform: translate3d(calc(100% - (#{$barHeightMedium} / 2)), 0px, -$barHeightMedium/2) rotate3d(0, 1, 0, 90deg);
                 }
             }
@@ -199,22 +232,24 @@
     }
 
     .graph__bar__text {
-        color: $secondary;
+        color: $text;
         display: block;
-        font-weight: bold;
+        font-weight: 600;
+        letter-spacing: 1px;
         margin-right: 25px;
         min-width: 75px;
+        text-transform: uppercase;
         width: 75px;
-        
+
         @media (min-width: $small) {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-right: 20px;
             min-width: 80px;
             width: 80px;
         }
 
         @media (min-width: $medium) {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             height: 30px;
             min-width: 105px;
             width: 105px;
@@ -229,7 +264,7 @@
     }
 
     .graph__bar__percentage {
-        color: $secondary;
+        color: $accent;
         display: none;
         font-size: 1.2rem;
         margin-left: 15px;
@@ -242,14 +277,5 @@
             font-size: 1.4rem;
             font-weight: bold;
         }
-    }
-}
-
-@keyframes spin {
-    from {
-        transform: rotateX(120deg);
-    }
-    to {
-        transform: rotateX(160deg);
     }
 }

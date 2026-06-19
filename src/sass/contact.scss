@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .contact {
-    color: $primary;
+    color: $text;
     min-height: initial;
     padding: 15px;
 
@@ -9,27 +9,51 @@
         padding: 30px;
     }
 
+    .section__heading::before {
+        @include section-label;
+        content: "Reach Out";
+    }
+
+    .max-width-wrapper {
+        @include hud-panel;
+        @include hud-corners(20px);
+
+        padding: 32px 24px 48px;
+        text-align: center;
+    }
+
     &__details {
-        font-size: 1.2rem;
-        margin-bottom: 60px;
+        color: $text-muted;
+        font-size: 1.15rem;
+        line-height: 1.55;
+        margin-bottom: 36px;
+
+        @media (min-width: $medium) {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__email {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
 
         @media (min-width: $medium) {
             font-size: 1.6rem;
         }
     }
 
-    &__email {
-        font-size: 1.4rem;
-        margin-bottom: 80px;
-        text-align: center;
-
-        @media (min-width: $medium) {
-            font-size: 1.8rem;
-        }
-    }
-
     &__email__link {
-        color: $primary;
+        border-bottom: 1px solid rgba(0, 249, 170, 0.45);
+        color: $highlight;
+        padding-bottom: 4px;
         text-decoration: none;
+        text-shadow: 0 0 20px rgba(0, 249, 170, 0.25);
+        transition: color 250ms ease, border-color 250ms ease, text-shadow 250ms ease;
+
+        &:hover {
+            border-color: $accent;
+            color: $accent;
+            text-shadow: 0 0 24px rgba(56, 232, 255, 0.45);
+        }
     }
 }

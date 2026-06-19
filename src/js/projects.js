@@ -10,7 +10,6 @@ const projectData = {
         title: "Made With AI",
         year: 2025,
         images: [
-            "assets/madeWithAI/decorait.png",
             "assets/madeWithAI/snake.png",
             "assets/madeWithAI/tanks.png",
             "assets/madeWithAI/textTransform.png",
@@ -23,6 +22,24 @@ const projectData = {
         link: "https://sconway.github.io/made-with-ai/",
         role:
             "End to end development and deployment of all projects.",
+    },
+    decorait: {
+        title: "DecorAIt",
+        year: 2025,
+        images: [
+            "assets/decorait/decorait1.png",
+            "assets/decorait/decorait2.png",
+            "assets/decorait/decorait3.png",
+        ],
+        description:
+            "DecorAIt is an AI-powered interior design app that transforms room photos with new furniture layouts and styles. Users upload a photo, choose a design direction, and receive generated redesigns powered by image diffusion models.",
+        description2:
+            "The app includes a step-by-step design wizard, layout and woodworking editors built with Three.js, and a full account system with token-based and subscription billing through Stripe and Supabase.",
+        technology:
+            "Cursor, LLMs, HTML, CSS, Javascript, Vite, ExpressJS, Supabase, Stripe, ThreeJS",
+        link: "https://www.decorait.app/",
+        role:
+            "Design, development, and deployment of the entire application.",
     },
     wit: {
         title: "Wentworth Institute of Technology",
@@ -335,8 +352,26 @@ function toggleAnimations() {
     }, 800);
 }
 
+function renderTechnologyTags(container, technologyString) {
+    const tags = technologyString
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean);
+
+    container.innerHTML = `<ul class="project__details__tags">${tags
+        .map((tag) => `<li>${tag}</li>`)
+        .join("")}</ul>`;
+}
+
+function getProjectIndex(projectId) {
+    const cards = [...document.querySelectorAll(".projects .project")];
+    const index = cards.findIndex((card) => card.id === projectId);
+    return String(Math.max(index, 0) + 1).padStart(2, "0");
+}
+
 function handleProjectClick(e) {
-    const selectedProject = projectData[e.target.offsetParent.id];
+    const projectElement = e.currentTarget;
+    const selectedProject = projectData[projectElement.id];
     const projectTitle = document.getElementById("projectTitle");
     const projectDescription = document.getElementById(
         "projectDescription"
@@ -349,6 +384,7 @@ function handleProjectClick(e) {
     const projectTechnologies = document.getElementById(
         "projectTechnologies"
     );
+    const projectIndex = document.getElementById("projectIndex");
     const projectLink = document.getElementById("projectLink");
 
     toggleAnimations();
@@ -365,7 +401,8 @@ function handleProjectClick(e) {
         projectDescription2.innerHTML = selectedProject.description2;
         projectYear.innerHTML = selectedProject.year;
         projectRole.innerHTML = selectedProject.role;
-        projectTechnologies.innerHTML = selectedProject.technology;
+        renderTechnologyTags(projectTechnologies, selectedProject.technology);
+        projectIndex.textContent = getProjectIndex(projectElement.id);
         projectLink.href = selectedProject.link;
 
         animateSlider();

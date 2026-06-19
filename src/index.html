@@ -17,18 +17,16 @@
 
         <link rel="icon" href="./favicon.ico" />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
 
         <style>
             .loading-screen {
-                background-color: #121212;
+                background-color: #04070b;
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -61,7 +59,8 @@
                 width: 20px;
                 height: 20px;
                 border-radius: 100%;
-                background-color: #3fcaa3;
+                background-color: #00f9aa;
+                box-shadow: 0 0 18px rgba(0, 249, 170, 0.8);
                 margin: 35px 5px;
             }
 
@@ -573,6 +572,24 @@
                 <h2 class="section__heading">Projects</h2>
 
                 <div class="projects__wrapper">
+                    <article class="project" id="decorait">
+                        <div class="project__content">
+                            <h2 class="project__title">DecorAIt</h2>
+                            <p class="project__description">
+                                AI-powered interior design that transforms room
+                                photos with new furniture layouts and styles.
+                            </p>
+                            <h3 class="project__technologies__heading">
+                                Technologies
+                            </h3>
+                            <p class="project__technologies">
+                                Cursor, LLMs, HTML, CSS, Javascript, Vite,
+                                ExpressJS, Supabase, Stripe, ThreeJS
+                            </p>
+                            <p class="project__details-link">Details</p>
+                        </div>
+                    </article>
+
                     <article class="project" id="madeWithAI">
                         <div class="project__content">
                             <h2 class="project__title">
@@ -608,24 +625,6 @@
                         </div>
                     </article>
 
-                    <article class="project" id="worldTweets">
-                        <div class="project__content">
-                            <h2 class="project__title">Global Tweets</h2>
-                            <p class="project__description">
-                                A visualizer for viewing tweets from around the
-                                world.
-                            </p>
-                            <h3 class="project__technologies__heading">
-                                Technologies
-                            </h3>
-                            <p class="project__technologies">
-                                NodeJS, ExpressJS, SocketIO, HTML, CSS,
-                                Javascript, ThreeJS
-                            </p>
-                            <p class="project__details-link">Details</p>
-                        </div>
-                    </article>
-
                     <article class="project" id="devsamples">
                         <div class="project__content">
                             <h2 class="project__title">Devsamples.com</h2>
@@ -639,6 +638,24 @@
                             <p class="project__technologies">
                                 HTML, CSS, Typescript, NextJS, ExpressJS,
                                 SanityIO, ScrollMagic
+                            </p>
+                            <p class="project__details-link">Details</p>
+                        </div>
+                    </article>
+
+                    <article class="project" id="worldTweets">
+                        <div class="project__content">
+                            <h2 class="project__title">Global Tweets</h2>
+                            <p class="project__description">
+                                A visualizer for viewing tweets from around the
+                                world.
+                            </p>
+                            <h3 class="project__technologies__heading">
+                                Technologies
+                            </h3>
+                            <p class="project__technologies">
+                                NodeJS, ExpressJS, SocketIO, HTML, CSS,
+                                Javascript, ThreeJS
                             </p>
                             <p class="project__details-link">Details</p>
                         </div>
@@ -837,8 +854,9 @@
                         </div>
                     </article>
                 </div>
+            </div>
 
-                <article class="project__details" id="projectDetails">
+            <article class="project__details" id="projectDetails">
                     <button class="project__details__close" id="projectClose">
                         <span class="hidden">Close project details</span>
                     </button>
@@ -849,14 +867,22 @@
                     ></div>
 
                     <div class="project__details__content max-width-wrapper">
-                        <span
-                            class="project__details__year"
-                            id="projectYear"
-                        ></span>
-                        <h2
-                            class="project__details__title"
-                            id="projectTitle"
-                        ></h2>
+                        <header class="project__details__head">
+                            <span
+                                class="project__details__index"
+                                id="projectIndex"
+                            >01</span>
+                            <div class="project__details__heading">
+                                <span
+                                    class="project__details__year"
+                                    id="projectYear"
+                                ></span>
+                                <h2
+                                    class="project__details__title"
+                                    id="projectTitle"
+                                ></h2>
+                            </div>
+                        </header>
                         <p
                             class="project__details__description"
                             id="projectDescription"
@@ -868,12 +894,9 @@
                         <footer class="project__details__footer">
                             <div class="project__details__wrapper">
                                 <h4 class="project__details__header">
-                                    Technologies
+                                    Stack
                                 </h4>
-                                <p
-                                    class="project__details__technologies"
-                                    id="projectTechnologies"
-                                ></p>
+                                <div id="projectTechnologies"></div>
                             </div>
                             <div class="project__details__wrapper">
                                 <h4 class="project__details__header">
@@ -901,8 +924,7 @@
                             >
                         </div>
                     </div>
-                </article>
-            </div>
+            </article>
         </section>
 
         <section class="section contact">

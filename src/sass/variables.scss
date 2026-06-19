@@ -1,8 +1,10 @@
-$primary: #121212;
-$secondary: #D8DBE2;
+$primary: #04070b;
+$secondary: #d8dbe2;
 $tertiary: #373f51;
-$highlight: #3fcaa3;
-$accent: #A9BCD0;
+$highlight: #00f9aa;
+$accent: #38e8ff;
+$text: #e8edf4;
+$text-muted: #9fb0bf;
 
 $barWidthSmall: 200px;
 $barHeightSmall: 20px;
@@ -12,3 +14,56 @@ $small: 360px;
 $medium: 600px;
 $large: 900px;
 $xlarge: 1200px;
+
+@mixin hud-panel {
+    background: linear-gradient(160deg, rgba(13, 22, 32, 0.92), rgba(5, 10, 16, 0.85));
+    border: 1px solid rgba(0, 249, 170, 0.3);
+    box-shadow:
+        0 0 28px rgba(0, 249, 170, 0.14),
+        inset 0 0 36px rgba(0, 249, 170, 0.05);
+}
+
+@mixin hud-corners($size: 16px, $color: $highlight) {
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: $size;
+        height: $size;
+        pointer-events: none;
+    }
+
+    &::before {
+        top: -2px;
+        left: -2px;
+        border-top: 2px solid $color;
+        border-left: 2px solid $color;
+    }
+
+    &::after {
+        bottom: -2px;
+        right: -2px;
+        border-bottom: 2px solid $color;
+        border-right: 2px solid $color;
+    }
+}
+
+@mixin section-label {
+    color: $accent;
+    display: block;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+
+    &::after {
+        content: "";
+        display: block;
+        height: 1px;
+        margin-top: 10px;
+        width: 48px;
+        background: linear-gradient(to right, rgba(56, 232, 255, 0.6), transparent);
+    }
+}
